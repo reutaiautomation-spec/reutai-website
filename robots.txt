@@ -1,0 +1,7 @@
+# reutaisolutions.com
+User-agent: *
+Allow: /
+Disallow: /lab/
+Disallow: /lab-check-20-services-head.png
+
+Sitemap: https://reutaisolutions.com/sitemap.xml

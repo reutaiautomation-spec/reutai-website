@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>אוטומציה ו-AI לעסקים | Reut AI</title>
+<meta name="description" content="אוטומציה, סוכני AI ומערכות CRM מותאמות לעסקים. איתור תהליכים שמעכבים את העסק ובונה פתרונות שחוסכים זמן ועבודה ידנית.">
+<link rel="canonical" href="https://reutaisolutions.com/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="רעות מאור">
+<meta name="theme-color" content="#1A1220">
+
+<!-- Open Graph (WhatsApp / LinkedIn / Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Reut AI">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="אוטומציה ו-AI לעסקים | Reut AI">
+<meta property="og:description" content="אוטומציה, סוכני AI ומערכות CRM מותאמות לעסקים. איתור תהליכים שמעכבים את העסק ובונה פתרונות שחוסכים זמן ועבודה ידנית.">
+<meta property="og:url" content="https://reutaisolutions.com/">
+<meta property="og:image" content="https://reutaisolutions.com/assets/hero-team.jpg">
+<meta property="og:image:width" content="1448">
+<meta property="og:image:height" content="1086">
+<meta property="og:image:alt" content="רעות מאור, Reut AI — אוטומציה, סוכני AI ומערכות CRM מותאמות לעסקים">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="אוטומציה ו-AI לעסקים | Reut AI">
+<meta name="twitter:description" content="אוטומציה, סוכני AI ומערכות CRM מותאמות לעסקים. איתור תהליכים שמעכבים את העסק ובונה פתרונות שחוסכים זמן ועבודה ידנית.">
+<meta name="twitter:image" content="https://reutaisolutions.com/assets/hero-team.jpg">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23140A12'/><circle cx='16' cy='16' r='4' fill='%23FF4FA3'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+/* =====================================================================
+   REUT AI — token layer. Six colours, one font family (Heebo carries both
+   display and text; JetBrains Mono for the folio numerals/labels).
+   ===================================================================== */
+:root {
+  --sc-canvas:      #1A1220;
+  --sc-surface:     #241A2E;
+  --sc-ink:         #F3EEF6;
+  --sc-ink-soft:    #9C90AA;
+  --sc-accent:      #FF4FA3;   /* pink — primary accent */
+  --sc-accent-ink:  #17060F;
+
+  --sc-font-display: "Heebo", system-ui, sans-serif;
+  --sc-font-text:    "Heebo", system-ui, sans-serif;
+  --sc-font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  /* brand trio beyond the single kit accent */
+  --brand-pink:      #FF4FA3;
+  --brand-turquoise: #3FE0C5;
+  --brand-purple:    #A78BFA;
+
+  --sc-hairline:        color-mix(in oklab, var(--sc-ink) 14%, transparent);
+  --sc-hairline-strong: color-mix(in oklab, var(--sc-ink) 26%, transparent);
+}
+
+::selection { background: var(--brand-pink); color: #17060F; }
+
+/* RTL correction: the kit's --lead/--trail anchors and corner scrims are
+   authored physical-left/physical-right for LTR reading. Mirrored here so
+   "lead" (where a Hebrew reader's eye starts) is the physical right. */
+html[dir="rtl"] .sc-copy--lead  { left: auto; right: var(--sc-gutter); text-align: right; }
+html[dir="rtl"] .sc-copy--trail { right: auto; left: var(--sc-gutter); text-align: left; }
+html[dir="rtl"] .sc-scrim--lead {
+  background: linear-gradient(to top left,
+    color-mix(in oklab, var(--sc-canvas) 94%, transparent) 0%,
+    color-mix(in oklab, var(--sc-canvas) 72%, transparent) 30%,
+    color-mix(in oklab, var(--sc-canvas) 30%, transparent) 52%,
+    transparent 72%);
+}
+html[dir="rtl"] .sc-scrim--trail {
+  background: linear-gradient(to top right,
+    color-mix(in oklab, var(--sc-canvas) 94%, transparent) 0%,
+    color-mix(in oklab, var(--sc-canvas) 72%, transparent) 30%,
+    color-mix(in oklab, var(--sc-canvas) 30%, transparent) 52%,
+    transparent 72%);
+}
+
+body { overflow-x: clip; }
+
+/* ---------------------------------------------------------------------
+   Folio nav — chaptered-editorial chrome: wordmark, running chapter
+   name, one contextual text-CTA. Not a boxed bar.
+   --------------------------------------------------------------------- */
+.folio {
+  position: fixed; inset-inline: 0; top: 0; z-index: var(--sc-z-chrome);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(0.9rem, 2vw, 1.4rem) var(--sc-gutter);
+  pointer-events: none;
+}
+.folio::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to bottom,
+    color-mix(in oklab, var(--sc-canvas) 88%, transparent) 0%,
+    color-mix(in oklab, var(--sc-canvas) 60%, transparent) 60%,
+    transparent 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.folio > * { pointer-events: auto; }
+.folio__mark {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--sc-font-display); font-weight: 800; font-size: 1.05rem;
+  color: var(--sc-ink); text-decoration: none;
+}
+.folio__mark svg { width: 30px; height: 30px; flex-shrink: 0; }
+.folio__mark b { color: var(--brand-pink); font-weight: 800; }
+.folio__cta {
+  font-family: var(--sc-font-text); font-size: 0.85rem; font-weight: 600;
+  color: var(--sc-ink); text-decoration: none;
+  border-bottom: 1px solid var(--sc-hairline-strong);
+  padding-bottom: 2px; white-space: nowrap;
+  transition: border-color var(--sc-d-fast) var(--sc-ease-out), color var(--sc-d-fast) var(--sc-ease-out);
+}
+.folio__cta:hover { color: var(--brand-pink); border-color: var(--brand-pink); }
+
+/* ---------------------------------------------------------------------
+   Chapter 1 — title page. Calm. No media above the fold.
+   --------------------------------------------------------------------- */
+.ch-title {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(6rem, 14vh, 9rem) var(--sc-gutter) var(--sc-9);
+  position: relative;
+}
+.ch-title__inner { max-width: var(--sc-maxw); margin-inline: auto; width: 100%; position: relative; z-index: 1; }
+.ch-title__photo {
+  position: absolute; left: clamp(2rem, 12vw, 7rem); top: 0; bottom: 0; margin-block: auto;
+  width: clamp(11rem, 19vw, 18rem); height: min(62vh, 38rem);
+  border-radius: var(--sc-r-lg); overflow: clip; z-index: 0; opacity: 0.92;
+}
+.ch-title__photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92); }
+.ch-title__photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 52%, var(--sc-canvas) 100%),
+    linear-gradient(to bottom, var(--sc-canvas) 0%, transparent 16%, transparent 84%, var(--sc-canvas) 100%);
+}
+@media (max-width: 900px) { .ch-title__photo { display: none; } }
+.ch-title h1 {
+  font-family: var(--sc-font-display); font-weight: 700;
+  font-size: clamp(2.3rem, 3.2rem + 2vw, 5.6rem);
+  line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
+  margin: 0 0 var(--sc-7); max-width: 18ch;
+}
+.ch-title h1 em { font-style: normal; color: var(--brand-pink); }
+.ch-title .lede { font-size: var(--sc-t-lg); color: var(--sc-ink-soft); max-width: 46ch; margin: 0 0 var(--sc-6); text-wrap: pretty; }
+.ch-title .philosophy {
+  font-size: clamp(1.15rem, 1rem + 0.9vw, 1.55rem);
+  font-weight: 600; color: var(--sc-ink); max-width: 30ch;
+  border-right: 3px solid var(--brand-pink); padding-right: var(--sc-5);
+  margin: var(--sc-7) 0 var(--sc-8);
+}
+.ch-title__cta {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-weight: 700; font-size: 1rem; color: var(--sc-accent-ink);
+  background: linear-gradient(135deg, var(--brand-pink), color-mix(in oklab, var(--brand-pink) 70%, var(--brand-purple)));
+  padding: 1rem 1.7rem; border-radius: var(--sc-r-pill); text-decoration: none;
+  box-shadow: 0 14px 32px -12px color-mix(in oklab, var(--brand-pink) 65%, transparent);
+  transition: transform var(--sc-d-fast) var(--sc-ease-out), box-shadow var(--sc-d-fast) var(--sc-ease-out);
+}
+.ch-title__cta:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -10px color-mix(in oklab, var(--brand-pink) 70%, transparent); }
+.ch-title__cta svg { width: 18px; height: 18px; transform: scaleX(-1); }
+.ch-title__mesh {
+  position: absolute; inset: 0; z-index: -1; opacity: 0.55;
+  background:
+    radial-gradient(38rem 24rem at 84% 8%, color-mix(in oklab, var(--brand-purple) 20%, transparent), transparent 60%),
+    radial-gradient(30rem 22rem at 8% 92%, color-mix(in oklab, var(--brand-turquoise) 16%, transparent), transparent 60%);
+}
+
+/* ---------------------------------------------------------------------
+   Chapter 2 — the pain line. Real customer sentences, each one flying
+   in from a random corner of the screen, scroll-scrubbed off --sc-p.
+   Lands on the solution line with a sparkle burst + the CTA.
+   --------------------------------------------------------------------- */
+.ch-pains { background: var(--sc-canvas); }
+.pains-stage {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(1.5rem, 4svh, 2.5rem); padding-block: clamp(1rem, 4svh, 2rem);
+  min-height: 100svh;
+}
+.pains-text {
+  position: relative; width: 100%; min-height: clamp(10rem, 30svh, 16rem);
+  display: flex; align-items: center; justify-content: center;
+  padding-inline: var(--sc-gutter);
+}
+.pains-sentence {
+  display: inline-block; text-align: center; max-width: 34ch;
+  font-family: var(--sc-font-display); font-weight: 700;
+  font-size: clamp(1.4rem, 1.05rem + 2vw, 2.5rem); line-height: 1.25; color: var(--sc-ink);
+  opacity: 0; will-change: transform, opacity;
+  transition: transform 0.55s cubic-bezier(.16,1,.3,1), opacity 0.5s ease;
+}
+.pains-sentence.is-final {
+  max-width: 44ch; font-weight: 500; color: var(--sc-ink-soft);
+  font-size: clamp(1.1rem, 0.95rem + 1vw, 1.6rem);
+}
+.pains-sparkle { position: absolute; inset: 0; pointer-events: none; }
+.pains-sparkle span {
+  position: absolute; width: 7px; height: 7px; border-radius: 50%; opacity: 0; transform: scale(0);
+}
+.pains-sparkle span:nth-child(1) { top: 22%; left: 12%; background: var(--brand-pink); box-shadow: 0 0 12px 2px var(--brand-pink); }
+.pains-sparkle span:nth-child(2) { top: 72%; left: 20%; background: var(--brand-turquoise); box-shadow: 0 0 12px 2px var(--brand-turquoise); }
+.pains-sparkle span:nth-child(3) { top: 14%; left: 82%; background: var(--brand-purple); box-shadow: 0 0 12px 2px var(--brand-purple); }
+.pains-sparkle span:nth-child(4) { top: 78%; left: 76%; background: var(--brand-pink); box-shadow: 0 0 12px 2px var(--brand-pink); }
+.pains-sparkle span:nth-child(5) { top: 48%; left: 4%; background: var(--brand-turquoise); box-shadow: 0 0 12px 2px var(--brand-turquoise); }
+.pains-sparkle span:nth-child(6) { top: 46%; left: 94%; background: var(--brand-purple); box-shadow: 0 0 12px 2px var(--brand-purple); }
+.pains-sparkle.burst span { animation: pains-sparkle-pop 900ms ease-out forwards; }
+.pains-sparkle.burst span:nth-child(1) { animation-delay: 0ms; }
+.pains-sparkle.burst span:nth-child(2) { animation-delay: 70ms; }
+.pains-sparkle.burst span:nth-child(3) { animation-delay: 130ms; }
+.pains-sparkle.burst span:nth-child(4) { animation-delay: 50ms; }
+.pains-sparkle.burst span:nth-child(5) { animation-delay: 110ms; }
+.pains-sparkle.burst span:nth-child(6) { animation-delay: 170ms; }
+@keyframes pains-sparkle-pop {
+  0% { opacity: 0; transform: scale(0); }
+  35% { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+.pains-cta {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-weight: 700; font-size: 1rem; color: var(--sc-accent-ink);
+  background: linear-gradient(135deg, var(--brand-pink), color-mix(in oklab, var(--brand-pink) 70%, var(--brand-purple)));
+  padding: 0.9rem 1.6rem; border-radius: var(--sc-r-pill); text-decoration: none;
+  box-shadow: 0 14px 32px -12px color-mix(in oklab, var(--brand-pink) 65%, transparent);
+  transition: transform var(--sc-d-fast) var(--sc-ease-out), box-shadow var(--sc-d-fast) var(--sc-ease-out);
+}
+.pains-cta:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -10px color-mix(in oklab, var(--brand-pink) 70%, transparent); }
+.pains-cta svg { width: 17px; height: 17px; transform: scaleX(-1); }
+
+/* the six patterns + four steps recap: real, always-legible text.
+   this IS the "clarity" beat. */
+.recap { background: var(--sc-surface); border-top: 1px solid var(--sc-hairline); border-bottom: 1px solid var(--sc-hairline); }
+.recap__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sc-9); }
+.recap h2 {
+  font-family: var(--sc-font-mono); font-size: 0.92rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--brand-turquoise); margin: 0 0 var(--sc-6); font-weight: 500;
+}
+.recap h2.recap__lead { font-size: clamp(1.9rem, 1.5rem + 2vw, 3rem); font-weight: 700; }
+.recap ol, .recap ul { list-style: none; margin: 0; padding: 0; }
+.recap li { padding: var(--sc-5) 0; border-top: 1px solid var(--sc-hairline); }
+.recap li:first-child { border-top: 0; padding-top: 0; }
+.recap li h3 { font-family: var(--sc-font-display); font-size: 1.25rem; font-weight: 600; margin: 0 0 0.4rem; }
+.recap li p { color: var(--sc-ink-soft); font-size: 1.08rem; margin: 0; max-width: 42ch; }
+.recap .step-n {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.6rem; height: 1.6rem; border-radius: 50%; margin-left: 0.6rem;
+  background: color-mix(in oklab, var(--brand-purple) 22%, transparent);
+  color: var(--brand-purple); font-family: var(--sc-font-mono); font-size: 0.72rem; font-weight: 600;
+}
+.recap-cta {
+  display: inline-flex; align-items: center; gap: 0.6rem; margin-top: var(--sc-7);
+  font-weight: 700; font-size: 1.05rem; color: var(--sc-accent-ink);
+  background: linear-gradient(135deg, var(--brand-pink), color-mix(in oklab, var(--brand-pink) 70%, var(--brand-purple)));
+  padding: 0.9rem 1.6rem; border-radius: var(--sc-r-pill); text-decoration: none;
+  box-shadow: 0 12px 28px -10px color-mix(in oklab, var(--brand-pink) 60%, transparent);
+  transition: transform var(--sc-d-fast) var(--sc-ease-out), box-shadow var(--sc-d-fast) var(--sc-ease-out);
+}
+.recap-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -8px color-mix(in oklab, var(--brand-pink) 65%, transparent); }
+.recap-cta svg { width: 17px; height: 17px; transform: scaleX(-1); }
+@media (max-width: 860px) { .recap__grid { grid-template-columns: 1fr; gap: var(--sc-8); } }
+
+/* ---------------------------------------------------------------------
+   Chapter 3 — solutions, pan rail
+   --------------------------------------------------------------------- */
+.ch-solutions { background: var(--sc-canvas); }
+.services-head { max-width: 40rem; margin-bottom: var(--sc-9); }
+.services-head h2 { font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.9rem, 1.5rem + 2vw, 3rem); margin: 0 0 var(--sc-4); }
+.services-head p { color: var(--sc-ink-soft); }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--sc-8); }
+.service-item {
+  display: flex; gap: var(--sc-5);
+  padding: var(--sc-7) 0; border-top: 1px solid var(--sc-hairline);
+}
+.services-grid .service-item:nth-child(1),
+.services-grid .service-item:nth-child(2) { border-top: 0; padding-top: 0; }
+.service-item__mark { width: 2.8rem; height: 2.8rem; flex-shrink: 0; border-radius: var(--sc-r-md); display: flex; align-items: center; justify-content: center; }
+.service-item__mark svg { width: 22px; height: 22px; }
+.service-item h3 { font-family: var(--sc-font-display); font-size: 1.3rem; font-weight: 600; margin: 0 0 0.5rem; }
+.service-item p { color: var(--sc-ink-soft); font-size: 1.02rem; margin: 0; max-width: 32ch; }
+@media (max-width: 760px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .services-grid .service-item:nth-child(2) { border-top: 1px solid var(--sc-hairline); padding-top: var(--sc-7); }
+}
+
+/* FAQ */
+.ch-faq { background: var(--sc-canvas); padding-block: var(--sc-9); border-top: 1px solid var(--sc-hairline); }
+.faq > h2 { font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.9rem, 1.5rem + 2vw, 3rem); margin: 0 0 var(--sc-7); }
+.faq-item { padding: var(--sc-6) 0; border-top: 1px solid var(--sc-hairline); }
+.faq-item:first-of-type { border-top: 0; padding-top: 0; }
+.faq-item h3 { font-family: var(--sc-font-display); font-size: 1.2rem; font-weight: 600; color: var(--sc-ink); margin: 0 0 0.6rem; }
+.faq-item p { margin: 0; color: var(--sc-ink-soft); font-size: 1.02rem; line-height: 1.65; max-width: 74ch; }
+
+/* ---------------------------------------------------------------------
+   Chapter 4 — proof, reveal wipes
+   --------------------------------------------------------------------- */
+.ch-proof { background: var(--sc-surface); }
+.proof-head { max-width: 46rem; margin-bottom: var(--sc-9); }
+.proof-head h2 { font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.9rem, 1.5rem + 2vw, 3rem); margin: 0 0 var(--sc-4); }
+.proof-head p { color: var(--sc-ink-soft); }
+.proof-list { display: flex; flex-direction: column; gap: var(--sc-7); }
+.proof-case {
+  position: relative; border-radius: var(--sc-r-lg); overflow: clip;
+  border: 1px solid var(--sc-hairline); background: var(--sc-canvas);
+}
+/* The problem/solution row keeps the original two-panel layout and wipe
+   reveal; the impact band below is a separate, unwiped row so the result
+   metric is visible immediately — the strongest thing on the card. */
+.proof-case__row { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: 15rem; }
+.proof-case__tag {
+  position: absolute; top: var(--sc-5); right: var(--sc-5); z-index: 3;
+  font-family: var(--sc-font-mono); font-size: 0.88rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--brand-turquoise);
+  background: color-mix(in oklab, var(--brand-turquoise) 14%, var(--sc-canvas));
+  border: 1px solid color-mix(in oklab, var(--brand-turquoise) 40%, transparent);
+  padding: 0.35rem 0.8rem; border-radius: var(--sc-r-pill);
+}
+.proof-case__panel { padding: var(--sc-8) var(--sc-7); display: flex; flex-direction: column; justify-content: center; }
+.proof-case__panel h3 {
+  font-family: var(--sc-font-display); font-weight: 400; line-height: 1.18;
+  font-size: clamp(1.4rem, 1.15rem + 1vw, 1.85rem); margin: 0 0 var(--sc-5);
+}
+.proof-case__label { font-family: var(--sc-font-mono); font-size: 0.92rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.4rem; }
+.proof-case__panel .proof-case__label { font-size: clamp(1.4rem, 1.15rem + 1vw, 1.85rem); font-weight: 700; }
+.proof-case__label--impact { color: var(--brand-turquoise); }
+.proof-case__panel--problem { border-left: 1px solid var(--sc-hairline); }
+.proof-case__panel--problem .proof-case__label { color: color-mix(in oklab, var(--sc-ink-soft) 70%, var(--brand-pink)); }
+.proof-case__panel--solution .proof-case__label { color: var(--brand-purple); }
+.proof-case__panel p { color: var(--sc-ink-soft); font-size: 0.98rem; margin: 0 0 0.6rem; max-width: 34ch; }
+.proof-case__panel p:last-child { margin-bottom: 0; }
+/* Impact band — the strongest visual element on the card: one big
+   transformation statement, always visible (not wipe-gated). */
+.proof-case__impact { position: relative; border-top: 1px solid var(--sc-hairline); padding: var(--sc-7) var(--sc-7) var(--sc-8); text-align: center; }
+.proof-case__impact-metric {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.55rem;
+  font-family: var(--sc-font-display); font-weight: 800; line-height: 1.1;
+  font-size: clamp(1.5rem, 1.05rem + 2.2vw, 2.6rem);
+  margin: 0.5rem 0 0.7rem;
+}
+.proof-case__impact-metric .is-before { color: var(--sc-ink-soft); font-weight: 600; }
+.proof-case__impact-metric .is-after { color: var(--brand-pink); }
+.proof-case__impact-arrow { width: clamp(18px, 2vw, 26px); height: clamp(18px, 2vw, 26px); color: var(--brand-pink); transform: scaleX(-1); flex-shrink: 0; }
+.proof-case__impact-note { margin: 0 auto; max-width: 48ch; color: var(--sc-ink-soft); font-size: 0.96rem; }
+/* The wipe covers only the solution half (physical left — the second grid
+   column in this RTL layout) so the visitor reads the problem plainly, then
+   watches the solution get uncovered as the case scrolls into view. It is a
+   pure covering panel, canvas-coloured, no content of its own: the real
+   solution text underneath is what gets revealed, once, not duplicated. */
+.proof-case__wipe {
+  position: absolute; inset-block: 0; left: 0; width: 50%; z-index: 2;
+  background: var(--sc-canvas);
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 900ms var(--sc-ease-drawer);
+  border-inline-start: 1px solid var(--sc-hairline);
+}
+.proof-case.is-solved .proof-case__wipe { clip-path: inset(0 100% 0 0); }
+@media (max-width: 760px) {
+  .proof-case__row { grid-template-columns: 1fr; min-height: 0; }
+  .proof-case__wipe { display: none; }
+  .proof-case__panel--problem { border-left: 0; }
+  .proof-case__impact { padding: var(--sc-6) var(--sc-6) var(--sc-7); }
+}
+
+/* ---------------------------------------------------------------------
+   Chapter 5 — about. calm, intimate.
+   --------------------------------------------------------------------- */
+.ch-about { background: var(--sc-canvas); }
+.about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--sc-9); align-items: center; }
+.about-photo-wrap { position: relative; border-radius: var(--sc-r-lg); overflow: clip; aspect-ratio: 3/4; }
+.about-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.about-photo-wrap::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 60%, color-mix(in oklab, var(--sc-canvas) 55%, transparent) 100%);
+}
+.about-copy h2 { font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.9rem, 1.5rem + 2vw, 2.8rem); margin: 0 0 var(--sc-5); }
+.about-copy > p.lede { color: var(--sc-ink-soft); margin: 0 0 var(--sc-7); max-width: 48ch; }
+.about-points { display: flex; flex-direction: column; gap: var(--sc-5); margin-bottom: var(--sc-7); }
+.about-point { display: flex; gap: var(--sc-4); }
+.about-point .dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 0.5em; flex-shrink: 0; }
+.about-point h3 { font-family: var(--sc-font-display); font-size: 1.02rem; font-weight: 600; margin: 0 0 0.3rem; }
+.about-point p { color: var(--sc-ink-soft); font-size: 0.94rem; margin: 0; max-width: 44ch; }
+.about-quote {
+  font-size: 1.15rem; font-style: normal; font-weight: 500; color: var(--sc-ink);
+  border-right: 3px solid var(--brand-purple); padding-right: var(--sc-5); max-width: 40ch;
+}
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } .about-photo-wrap { max-width: 22rem; margin-inline: auto; } }
+
+/* ---------------------------------------------------------------------
+   Chapter 6 — commitment / contact. resolves and holds.
+   --------------------------------------------------------------------- */
+.close {
+  overflow-y: auto; overflow-x: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-block: clamp(1.5rem, 5svh, 3rem);
+}
+.close__inner { width: 100%; max-width: 42rem; margin-inline: auto; padding-inline: var(--sc-gutter); text-align: center; flex: 0 0 auto; }
+.close h2 { font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.9rem, 1.5rem + 2.2vw, 3.1rem); margin: 0 0 var(--sc-4); text-wrap: balance; }
+.close > .close__inner > p { color: var(--sc-ink-soft); margin: 0 0 var(--sc-8); }
+.cform { text-align: right; background: var(--sc-surface); border: 1px solid var(--sc-hairline); border-radius: var(--sc-r-lg); padding: var(--sc-7); box-shadow: var(--sc-e2); }
+.cform .f-group { margin-bottom: var(--sc-5); }
+.cform label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--sc-ink); }
+.cform .req { color: var(--brand-pink); }
+.cform input, .cform textarea {
+  width: 100%; padding: 0.85rem 1rem; border-radius: var(--sc-r-md);
+  border: 1px solid var(--sc-hairline-strong); background: var(--sc-canvas); color: var(--sc-ink);
+  font-family: var(--sc-font-text); font-size: 0.95rem; transition: border-color 160ms;
+}
+.cform input:focus, .cform textarea:focus { outline: none; border-color: var(--brand-pink); }
+.cform textarea { resize: vertical; min-height: 6.5rem; }
+.cform .f-check { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: var(--sc-6); }
+.cform .f-check input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--brand-pink); }
+.cform .f-check label { margin: 0; font-weight: 400; font-size: 0.85rem; color: var(--sc-ink-soft); }
+.cform .f-check a { color: var(--brand-turquoise); text-decoration: underline; }
+.cform button {
+  width: 100%; padding: 1rem; border: 0; border-radius: var(--sc-r-pill); cursor: pointer;
+  font-family: var(--sc-font-text); font-weight: 700; font-size: 1rem; color: var(--sc-accent-ink);
+  background: linear-gradient(135deg, var(--brand-pink), color-mix(in oklab, var(--brand-pink) 70%, var(--brand-purple)));
+  box-shadow: 0 14px 32px -12px color-mix(in oklab, var(--brand-pink) 65%, transparent);
+  transition: transform var(--sc-d-fast) var(--sc-ease-out);
+}
+.cform button:hover { transform: translateY(-2px); }
+.cform button:active { transform: scale(0.98); }
+.cform .status { margin-top: var(--sc-4); text-align: center; font-size: 0.88rem; color: var(--brand-turquoise); min-height: 1.2em; }
+.close__wa { margin: var(--sc-5) 0 0; text-align: center; font-size: 0.9rem; color: var(--sc-ink-soft); }
+.close__wa a { color: var(--brand-turquoise); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+.close__wa a:hover { color: var(--sc-ink); }
+.close .foot {
+  margin-top: var(--sc-8); display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: var(--sc-5); font-size: 0.82rem; color: var(--sc-ink-soft);
+}
+.close .foot a { color: var(--sc-ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+.close .foot a:hover { color: var(--sc-ink); }
+
+/* ---------------------------------------------------------------------
+   Accessibility widget (site-wide, not part of the scroll device kit)
+   --------------------------------------------------------------------- */
+.a11y-fab {
+  position: fixed; bottom: 20px; left: 20px; z-index: 300;
+  width: 52px; height: 52px; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--brand-pink); color: #17060F;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 26px -8px color-mix(in oklab, var(--brand-pink) 60%, transparent);
+}
+.a11y-fab svg { width: 26px; height: 26px; }
+.wa-fab {
+  position: fixed; bottom: 20px; left: 84px; z-index: 300;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; color: #04160D;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 26px -8px rgba(37, 211, 102, 0.55);
+  transition: transform var(--sc-d-fast) var(--sc-ease-out);
+}
+.wa-fab:hover { transform: translateY(-2px); }
+.wa-fab svg { width: 28px; height: 28px; }
+.a11y-panel {
+  position: fixed; bottom: 82px; left: 20px; z-index: 300; width: 260px;
+  background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong);
+  border-radius: var(--sc-r-lg); padding: 1.1rem; box-shadow: var(--sc-e3);
+  display: none; flex-direction: column; gap: 0.8rem;
+}
+.a11y-panel.open { display: flex; }
+.a11y-panel h2 { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.2rem; }
+.a11y-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.a11y-row span { font-size: 0.85rem; color: var(--sc-ink-soft); }
+.a11y-row .grp { display: flex; gap: 6px; }
+.a11y-panel button {
+  font-family: var(--sc-font-text); font-size: 0.8rem; background: var(--sc-canvas);
+  color: var(--sc-ink); border: 1px solid var(--sc-hairline-strong); border-radius: var(--sc-r-sm);
+  padding: 6px 10px; cursor: pointer;
+}
+.a11y-panel button[aria-pressed="true"] { background: var(--brand-pink); border-color: var(--brand-pink); color: #17060F; }
+.a11y-reset { text-align: center; margin-top: 0.2rem; }
+
+html.a11y-reduce-motion * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+html.a11y-high-contrast {
+  --sc-canvas: #000; --sc-surface: #000; --sc-ink: #fff; --sc-ink-soft: #fff;
+  --sc-hairline: #fff; --sc-hairline-strong: #fff;
+  --brand-pink: #ff7fc0; --brand-turquoise: #7ff2df; --brand-purple: #c9b8ff;
+}
+html { font-size: calc(100% * var(--a11y-scale, 1)); }
+</style>
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<nav class="folio" aria-label="ניווט ראשי">
+  <a href="#top" class="folio__mark">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <rect width="64" height="64" rx="16" fill="#1E0F19"/>
+      <circle cx="18" cy="16" r="3.2" fill="#FF4FA3"/>
+      <circle cx="14" cy="32" r="3.2" fill="#3FE0C5"/>
+      <circle cx="18" cy="48" r="3.2" fill="#A78BFA"/>
+      <path d="M18 16C26 16 26 26 34 32" fill="none" stroke="#FF4FA3" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14 32H34" fill="none" stroke="#3FE0C5" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 48C26 48 26 38 34 32" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="34" cy="32" r="9" fill="none" stroke="#FF4FA3" stroke-width="3"/>
+      <circle cx="34" cy="32" r="3" fill="#fff"/>
+    </svg>
+    Reut <b>AI</b>
+  </a>
+  <a href="#contact" class="folio__cta">ספרו לי מה צוואר הבקבוק שלכם</a>
+</nav>
+
+<main id="top">
+
+<!-- ============================================================ CH.1 -->
+<section class="ch-title sc-section" data-sc-act="flow" data-chapter="I" data-chapter-name="ההתחלה" id="hero" data-sc-drift="#1A1220">
+  <div class="ch-title__mesh" aria-hidden="true"></div>
+  <figure class="ch-title__photo" data-sc-in aria-hidden="true">
+    <img src="assets/hero-team.jpg" alt="" loading="eager">
+  </figure>
+  <div class="ch-title__inner sc-stack" data-sc-in data-sc-stagger="90">
+    <h1 data-sc-kinetic="lines">פתרונות חכמים ל<em>ייעול העסק</em> שלך.</h1>
+    <p class="lede">Reut AI עוזרת לעסקים לזהות איפה תהליכים מתעכבים, שואבים זמן ואנרגיה ובונה פתרונות טכנולוגיים מעשיים לעסק: אוטומציה לעסקים, סוכני AI, CRM, ומערכות מותאמות אישית.</p>
+    <p class="philosophy">אנו מתחילים מהצורך של העסק שלכם.<br>לא מהטכנולוגיה.</p>
+    <a href="#contact" class="ch-title__cta">
+      ספרו לי מה הדבר שלוקח לכם הכי הרבה זמן לעשות
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================ CH.2 : THE PAIN LINE -->
+<section class="ch-pains sc-section" data-sc-act="flow" data-sc-drift="#1A1220" data-chapter="II" data-chapter-name="הבקבוק והצוואר">
+  <div data-sc-stage class="pains-stage">
+    <div class="pains-text">
+      <span class="pains-sentence" id="painsSentence"></span>
+      <div class="pains-sparkle" id="painsSparkle" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <a href="#contact" class="pains-cta" id="painsCta">יש לזה פתרון - שיחה איתי
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- recap: real, always-legible text -->
+<section class="recap sc-section" data-sc-act="flow" data-sc-drift="#241A2E">
+  <div class="sc-wrap">
+    <div class="recap__grid">
+      <div>
+        <h2 data-sc-in class="recap__lead">אם אתם מזדהים עם...</h2>
+        <ul data-sc-in data-sc-stagger="90">
+          <li><h3>לידים נופלים בין הכיסאות</h3><p>אין מעקב מסודר אחרי לקוחות פוטנציאליים, ופניות מתפספסות בדרך.</p></li>
+          <li><h3>שעות מתבזבזות על משימות חוזרות</h3><p>אותן שאלות, הזנות נתונים ופעולות מתבצעות שוב ושוב ידנית.</p></li>
+          <li><h3>המידע מפוזר בין מערכות</h3><p>מייל, WhatsApp, גיליונות Excel ומערכות שונות — בלי מקור מידע אחד מסודר.</p></li>
+          <li><h3>התקשורת עם הלקוחות הופכת לעבודה בפני עצמה</h3><p>שאלות חוזרות והודעות שוטפות גוזלות זמן שאפשר להשקיע בעבודה שמקדמת את העסק.</p></li>
+          <li><h3>תהליכים שיכולים לעבוד לבד — עדיין נעשים ידנית</h3><p>פעולות שחוזרות מדי יום או שבוע יכולות להפוך לתהליך אוטומטי שעובד ברקע.</p></li>
+          <li><h3>אתגרים ייחודיים שכלים מהמדף לא פותרים</h3><p>לעסק שלכם יש צרכים תפעוליים ספציפיים שתוכנה גנרית פשוט לא נותנת עליהם מענה.</p></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-sc-in class="recap__lead">שיטת העבודה</h2>
+        <ol data-sc-in data-sc-stagger="90">
+          <li><h3><span class="step-n">1</span>הבנת העסק</h3><p>ממפים איך העסק עובד בפועל — המטרות, האנשים, הלקוחות והתהליכים — ומזהים איפה זמן ואנרגיה מתבזבזים.</p></li>
+          <li><h3><span class="step-n">2</span>איתור צוואר הבקבוק</h3><p>מזהים מה באמת מעכב את העסק: לידים שנופלים בין הכיסאות, משימות שחוזרות על עצמן, מידע שמפוזר בין מערכות או תהליך שדורש יותר מדי עבודה ידנית.</p></li>
+          <li><h3><span class="step-n">3</span>בחירת הפתרון הנכון</h3><p>לא כל בעיה צריכה AI ולא כל תהליך צריך אוטומציה. בוחרים את הפתרון לפי הצורך העסקי — אוטומציה, סוכן AI, מערכת CRM, פתרון WhatsApp או מערכת מותאמת אישית.</p></li>
+          <li><h3><span class="step-n">4</span>בנייה ויישום</h3><p>הפתרון נבנה סביב הדרך שבה העסק באמת עובד — במטרה לצמצם עבודה ידנית, לפשט תהליכים וליצור שיטת עבודה יעילה יותר.</p></li>
+        </ol>
+        <a href="#contact" class="recap-cta" data-sc-in>בואו נדבר
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CH.3 : SERVICES -->
+<section class="ch-solutions sc-section" data-sc-act="flow" data-sc-drift="#1A1220" data-chapter="III" data-chapter-name="שירותים" id="solutions">
+  <div class="sc-wrap">
+    <div class="services-head" data-sc-in data-sc-stagger="60">
+      <h2>שירותים</h2>
+      <p>בהתאם לאתגר שלכם, אני מעצבת ובונה את הפתרון הטכנולוגי הנכון - תמיד מותאם אישית לעסק שלכם.</p>
+    </div>
+    <div class="services-grid" data-sc-in data-sc-stagger="70">
+      <article class="service-item">
+        <div class="service-item__mark" style="background:color-mix(in oklab, var(--brand-turquoise) 18%, transparent); color:var(--brand-turquoise);">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>אוטומציה</h3>
+          <p>ייעול משימות ותהליכים חוזרים כך שיתבצעו אוטומטית, וחיסכון בשעות עבודה כל שבוע.</p>
+        </div>
+      </article>
+      <article class="service-item">
+        <div class="service-item__mark" style="background:color-mix(in oklab, var(--brand-pink) 18%, transparent); color:var(--brand-pink);">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>סוכני AI</h3>
+          <p>עוזרים חכמים שמטפלים בשאלות לקוחות, מעבדים נתונים או תומכים בצוות שלכם עם ידע מותאם אישית.</p>
+        </div>
+      </article>
+      <article class="service-item">
+        <div class="service-item__mark" style="background:color-mix(in oklab, var(--brand-purple) 18%, transparent); color:var(--brand-purple);">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 14h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>מערכות CRM מותאמות אישית</h3>
+          <p>כלי ניהול קשרי לקוחות המותאמים בדיוק לאופן שבו העסק שלכם באמת פועל.</p>
+        </div>
+      </article>
+      <article class="service-item">
+        <div class="service-item__mark" style="background:color-mix(in oklab, var(--brand-turquoise) 18%, transparent); color:var(--brand-turquoise);">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>פתרונות וואטסאפ וצ'אט</h3>
+          <p>בוטים ותגובות אוטומטיות שמטפלים בשאלות לקוחות חוזרות בפלטפורמות הודעות שונות.</p>
+        </div>
+      </article>
+      <article class="service-item">
+        <div class="service-item__mark" style="background:color-mix(in oklab, var(--brand-pink) 18%, transparent); color:var(--brand-pink);">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2.3" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18" r="2.3" stroke="currentColor" stroke-width="1.8"/><path d="M8 7l7.2 8.7M16 7L8.8 15.7M8.3 6h7.4" stroke="currentColor" stroke-width="1.8"/></svg>
+        </div>
+        <div>
+          <h3>תהליכי עבודה מונעי נתונים</h3>
+          <p>מערכות שמחברות בין הנתונים, הכלים והתהליכים שלכם לזרימת עבודה חלקה ויעילה.</p>
+        </div>
+      </article>
+      <article class="service-item">
+        <div class="service-item__mark" style="background:color-mix(in oklab, var(--brand-purple) 18%, transparent); color:var(--brand-purple);">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7 3.3a1 1 0 011.4 0l4.6 4.6a1 1 0 010 1.4L9.4 20.6 3 21l.4-6.4L14.7 3.3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>כלים מותאמים אישית</h3>
+          <p>מערכות מותאמות אישית לחלוטין, המתוכננות ונבנות מאפס כדי לפתור את האתגרים התפעוליים הייחודיים שלכם.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CH.4+5 : PROOF, then ABOUT. One flow act, two folio chapters. -->
+<section class="ch-proof sc-section" data-sc-act="flow" data-sc-drift="#241A2E" id="case-studies">
+  <div class="sc-wrap" data-chapter="IV" data-chapter-name="הוכחה">
+    <div class="proof-head" data-sc-in data-sc-stagger="60">
+      <h2>תיק עבודות</h2>
+      <p>הנה כמה דוגמאות לפתרונות שבניתי עבור עסקים כמו שלכם. לכל אחת יש נגיעה - עברו איתה מהבעיה לפתרון.</p>
+    </div>
+    <div class="proof-list" data-sc-in data-sc-stagger="140">
+
+      <article class="proof-case" data-case id="case-ai-bio">
+        <span class="proof-case__tag">שירותים יצירתיים</span>
+        <div class="proof-case__row">
+          <div class="proof-case__panel proof-case__panel--problem">
+            <span class="proof-case__label">אתגר</span>
+            <h3>כתיבת ביוגרפיה דרשה חודשים של עבודה ידנית.</h3>
+          </div>
+          <div class="proof-case__panel proof-case__panel--solution">
+            <span class="proof-case__label">פתרון</span>
+            <h3>כותב ביוגרפיות מבוסס AI</h3>
+            <p>סוכן AI שלומד את סגנון הכתיבה ועובד עם חומרי המקור ב־Google Drive.</p>
+          </div>
+          <div class="proof-case__wipe" data-wipe></div>
+        </div>
+        <div class="proof-case__impact">
+          <span class="proof-case__label proof-case__label--impact">תוצאה</span>
+          <p class="proof-case__impact-metric"><span class="is-before">מחודשים</span><svg class="proof-case__impact-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="is-after">לשבוע</span></p>
+          <p class="proof-case__impact-note">זמן הכתיבה התקצר לכשבוע — תוך שמירה על הקול והסגנון האישי.</p>
+        </div>
+      </article>
+
+      <article class="proof-case" data-case id="case-crm-brokerage">
+        <span class="proof-case__tag">תיווך עסקים</span>
+        <div class="proof-case__row">
+          <div class="proof-case__panel proof-case__panel--problem">
+            <span class="proof-case__label">אתגר</span>
+            <h3>ניהול ידני ומפוזר של לקוחות, בתי עסק והתאמות דרש מעורבות מתמדת של בעל העסק.</h3>
+          </div>
+          <div class="proof-case__panel proof-case__panel--solution">
+            <span class="proof-case__label">פתרון</span>
+            <h3>CRM עם התאמה אוטומטית</h3>
+            <p>מערכת CRM לתיווך עסקים. CRM מותאם אישית שמרכז את העבודה ומבצע התאמות אוטומטיות בין קונים לעסקים למכירה.</p>
+          </div>
+          <div class="proof-case__wipe" data-wipe></div>
+        </div>
+        <div class="proof-case__impact">
+          <span class="proof-case__label proof-case__label--impact">תוצאה</span>
+          <p class="proof-case__impact-metric"><span class="is-before">מעבודה סביב השעון</span><svg class="proof-case__impact-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="is-after">לתהליך שעובד בצורה סיסטמטית</span></p>
+          <p class="proof-case__impact-note">פחות עבודה ידנית, יותר סדר ושליטה, ותהליך שיכול להתקדם בלי שבעל העסק יצטרך להיות מעורב בכל פעולה.</p>
+        </div>
+      </article>
+
+      <article class="proof-case" data-case id="case-whatsapp-camp">
+        <span class="proof-case__tag">חינוך ופנאי</span>
+        <div class="proof-case__row">
+          <div class="proof-case__panel proof-case__panel--problem">
+            <span class="proof-case__label">אתגר</span>
+            <h3>צוות מחנה הקיץ השקיע שעות במענה שוב ושוב על אותן שאלות, במקום להתמקד במכירות, בהרשמות ובהכנסת לקוחות חדשים.</h3>
+          </div>
+          <div class="proof-case__panel proof-case__panel--solution">
+            <span class="proof-case__label">פתרון</span>
+            <h3>בוט וואטסאפ אוטומטי</h3>
+            <p>בוט WhatsApp אוטומטי שנותן מענה מיידי לשאלות נפוצות ומוריד מהצוות את הטיפול בפניות החוזרות.</p>
+          </div>
+          <div class="proof-case__wipe" data-wipe></div>
+        </div>
+        <div class="proof-case__impact">
+          <span class="proof-case__label proof-case__label--impact">תוצאה</span>
+          <p class="proof-case__impact-metric"><span class="is-before">משעות של שאלות חוזרות</span><svg class="proof-case__impact-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="is-after">למענה אוטומטי</span></p>
+          <p class="proof-case__impact-note">פחות זמן על שאלות שחוזרות על עצמן, מענה מהיר וזמין יותר ללקוחות — ויותר זמן לצוות להתמקד במכירות ובצמיחת המחנה.</p>
+        </div>
+      </article>
+
+      <article class="proof-case" data-case id="case-webinar-access">
+        <span class="proof-case__tag">חינוך מקוון</span>
+        <div class="proof-case__row">
+          <div class="proof-case__panel proof-case__panel--problem">
+            <span class="proof-case__label">אתגר</span>
+            <h3>ניהול הרשמות, אימות תשלומים ושליחת גישה אישית למשתתפים דרשו טיפול ידני — כולל מעקב אחרי מועדי הגישה לכל משתתף.</h3>
+          </div>
+          <div class="proof-case__panel proof-case__panel--solution">
+            <span class="proof-case__label">פתרון</span>
+            <h3>מערכת גישה אוטומטית</h3>
+            <p>מערכת גישה מאובטחת לוובינרים. מערכת שמנהלת אוטומטית את ההרשמה והתשלום ומעניקה לכל משתתף גישה אישית ומאובטחת לתוכן הוובינר.</p>
+          </div>
+          <div class="proof-case__wipe" data-wipe></div>
+        </div>
+        <div class="proof-case__impact">
+          <span class="proof-case__label proof-case__label--impact">תוצאה</span>
+          <p class="proof-case__impact-metric"><span class="is-before">מהרשמה ידנית</span><svg class="proof-case__impact-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="is-after">לגישה אוטומטית לוובינר</span></p>
+          <p class="proof-case__impact-note">תהליך הרשמה וגישה שעובד אוטומטית, פחות התעסקות ידנית בניהול המשתתפים, וחוויית כניסה פשוטה ומסודרת יותר ללקוח.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="sc-wrap about-grid ch-about" id="about" data-chapter="V" data-chapter-name="עליי" style="margin-top: var(--sc-9);">
+    <figure class="about-photo-wrap" data-sc-reveal="up" data-sc-reveal-at="0.05 0.5">
+      <img src="assets/about-photo.jpg" width="1086" height="1448" alt="תמונת פורטרט של רעות מאור, מייסדת Reut AI">
+    </figure>
+    <div class="about-copy" data-sc-in data-sc-stagger="70">
+      <h2>קצת עליי</h2>
+      <p class="lede">הרקע שלי משלב טכנולוגיה ומכירות. התחלתי בתפקידים טכניים, עם בסיס במדעי המחשב ואלקטרוניקה, ומאוחר יותר עברתי למכירות — קודם בישראל, ואז בארצות הברית. היום אני משלבת את השניים: הבנה של פיתוח וטכנולוגיה לצד הבנה של איך עסקים ולקוחות באמת מתנהלים — וזה מה שמכוון אותי לבחור את הפתרון שיעבוד, לא את המרשים ביותר.</p>
+      <div class="about-points">
+        <div class="about-point"><span class="dot" style="background:var(--brand-turquoise)"></span><div><h3>בסיס טכני ופיתוח</h3><p>בוגרת תואר במדעי המחשב, ניסיון בתפקידים טכנולוגיים מעל 3 שנים, ובנייה של מערכות וכלים מותאמים אישית.</p></div></div>
+        <div class="about-point"><span class="dot" style="background:var(--brand-pink)"></span><div><h3>ניסיון במכירות</h3><p>עברתי למכירות — תחילה בביטוח בישראל, ולאחר מכן במכירות ישירות בארצות הברית.</p></div></div>
+        <div class="about-point"><span class="dot" style="background:var(--brand-purple)"></span><div><h3>הבנה עסקית</h3><p>השילוב הזה עיצב את האופן שבו אני עובדת היום: הבנה של הטכנולוגיה, של התהליך העסקי ושל האנשים מאחוריו.</p></div></div>
+      </div>
+      <blockquote class="about-quote">"אני מאמינה שטכנולוגיה צריכה לפשט עסק, לא להוסיף לו עוד שכבת מורכבות."</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ : real questions from prospective clients (also emitted as FAQPage JSON-LD) -->
+<section class="ch-faq" id="faq">
+  <div class="sc-wrap faq">
+    <h2>שאלות נפוצות</h2>
+
+    <div class="faq-item">
+      <h3>כמה עולה לבנות אוטומציה לעסק?</h3>
+      <p>אין מחיר אחיד, כי אוטומציה יכולה להיות תהליך פשוט יחסית או פתרון שמחבר כמה מערכות ותהליכים עסקיים. המחיר תלוי במורכבות התהליך, במספר המערכות והחיבורים ביניהן, בכמות הלוגיקה המותאמת אישית, בשאלה אם נדרש רכיב של AI, ובהיקף הבדיקות וההטמעה. לכן הצעד הראשון הוא תמיד להבין את התהליך ולהחליט מה באמת כדאי להפוך לאוטומטי — ורק אז אפשר לאמוד את הפרויקט.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>כמה עולה סוכן AI לעסק?</h3>
+      <p>זה תלוי במה שהסוכן צריך לעשות. סוכן פשוט שעונה על שאלות מתוך מקור ידע מוגדר הוא לא אותו דבר כמו סוכן שמתחבר ל-CRM ולמערכות העסק, מבצע פעולות, מעבד מסמכים או משתתף בתהליך רב־שלבי. לכן אני מאפיינת את הפרויקט לפי היכולות הנדרשות, החיבורים, מקורות המידע ורמת ההתאמה האישית — ומשם נגזר המחיר.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>כמה זמן לוקח להקים אוטומציה?</h3>
+      <p>משך ההקמה תלוי במורכבות התהליך. אוטומציה ממוקדת אחת יכולה לעלות לאוויר הרבה יותר מהר ממערכת שמערבת כמה פלטפורמות, חוקים עסקיים, AI ופיתוח מותאם. אני מתחילה ממיפוי התהליך הקיים, מזהה את צוואר הבקבוק, מגדירה את הפתרון, ורק אז בונה ובודקת. לוחות הזמנים המדויקים נקבעים אחרי שלב האפיון, לפי מה שהתברר בו.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>האם כל עסק צריך מערכת CRM מותאמת?</h3>
+      <p>לא. מערכת CRM מותאמת נכונה כשהמערכות הקיימות בשוק לא מתאימות לאופן שבו העסק עובד — הן יוצרות עבודה ידנית מיותרת, מחייבות עקיפות, או לא מצליחות לחבר בין המידע והתהליכים הרלוונטיים. אם כבר יש מערכת שנותנת מענה טוב לצורך העסקי, אין סיבה לבנות משהו מותאם רק בשביל לבנות.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>מתי לא כדאי לעשות אוטומציה?</h3>
+      <p>אוטומציה היא לא תמיד הפתרון הנכון. לרוב לא כדאי כשהתהליך קורה לעיתים רחוקות מאוד, כשהוא עדיין לא מוגדר בבירור, כשהוא משתנה כל הזמן, כשעלות האוטומציה גבוהה מהבעיה שהיא פותרת, או כששינוי פשוט בתהליך היה פותר את זה ממילא. המטרה היא לא להפוך הכול לאוטומטי — אלא לזהות איפה טכנולוגיה באמת יוצרת ערך עסקי.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ CH.6 : COMMITMENT -->
+<section id="contact" data-sc-act="flow" data-sc-drift="#1A1220" data-chapter="VI" data-chapter-name="הצעד הבא">
+  <div data-sc-stage class="close" data-sc-spotlight>
+    <div class="close__inner">
+      <h2 data-sc-cue="0.05" data-sc-kinetic="lines">בואו נפתור את האתגר העסקי שלכם</h2>
+      <p>ספרו לי מה הדבר שלוקח לכם הכי הרבה זמן לעשות.</p>
+
+      <form class="cform" id="contactForm" novalidate data-sc-cue="0.05" data-sc-rise="0">
+        <div class="f-group">
+          <label for="fullName">שם מלא <span class="req">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="השם שלך" required>
+        </div>
+        <div class="f-group">
+          <label for="email">כתובת אימייל <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="f-group">
+          <label for="business">שם העסק</label>
+          <input type="text" id="business" name="business" placeholder="שם החברה שלך">
+        </div>
+        <div class="f-group">
+          <label for="message">ספרו לי איפה העסק שלכם מתעכב <span class="req">*</span></label>
+          <textarea id="message" name="message" rows="4" placeholder="תארו את האתגר התפעולי או צוואר הבקבוק שאתם מתמודדים איתו..." required></textarea>
+        </div>
+        <div class="f-check">
+          <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+          <label for="privacyConsent">קראתי ואני מאשר/ת את <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a> <span class="req">*</span></label>
+        </div>
+        <button type="submit">שליחת הודעה</button>
+        <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="close__wa">מעדיפים וואטסאפ?
+        <a href="https://katzr.net/c5e3a2" target="_blank" rel="noopener" data-wa data-wa-loc="contact_section">דברו איתי כאן</a>
+      </p>
+
+      <footer class="foot">
+        <span>© <span id="year"></span> Reut AI. כל הזכויות שמורות.</span>
+        <a href="accessibility-statement.html">הצהרת נגישות</a>
+        <a href="privacy.html">מדיניות פרטיות</a>
+      </footer>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="הגדרות נגישות">
+  <h2>הגדרות נגישות</h2>
+  <div class="a11y-row"><span>גודל טקסט</span><div class="grp"><button type="button" id="a11yFontDec" aria-label="הקטן טקסט">א-</button><button type="button" id="a11yFontInc" aria-label="הגדל טקסט">א+</button></div></div>
+  <div class="a11y-row"><span>ניגודיות גבוהה</span><button type="button" id="a11yContrastToggle" aria-pressed="false">הפעלה</button></div>
+  <div class="a11y-row"><span>עצירת אנימציות</span><button type="button" id="a11yMotionToggle" aria-pressed="false">הפעלה</button></div>
+  <button type="button" class="a11y-reset" id="a11yReset">איפוס הגדרות</button>
+</div>
+<button type="button" class="a11y-fab" id="a11yToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="a11yPanel" aria-label="פתיחת תפריט נגישות">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="4" r="2" fill="currentColor"/>
+    <path d="M4 8.5C6.5 9.5 9 10 12 10C15 10 17.5 9.5 20 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 10V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 14L7 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 14L17 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
+<a href="https://katzr.net/c5e3a2" target="_blank" rel="noopener" class="wa-fab" aria-label="פתיחת צ׳אט וואטסאפ">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.47 14.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.86.5 3.6 1.38 5.1L2 22l5.05-1.33A9.95 9.95 0 0 0 12.02 22c5.52 0 10-4.48 10-10S17.54 2 12.02 2zm0 18.15c-1.67 0-3.22-.48-4.53-1.31l-.33-.2-3 .79.8-2.92-.21-.3A8.13 8.13 0 0 1 3.85 12c0-4.5 3.67-8.15 8.17-8.15S20.2 7.5 20.2 12s-3.67 8.15-8.18 8.15z"/></svg>
+</a>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://reutaisolutions.com/#website",
+      "url": "https://reutaisolutions.com/",
+      "name": "Reut AI",
+      "inLanguage": "he-IL",
+      "publisher": { "@id": "https://reutaisolutions.com/#organization" }
+    },
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "https://reutaisolutions.com/#organization",
+      "name": "Reut AI",
+      "url": "https://reutaisolutions.com/",
+      "image": "https://reutaisolutions.com/assets/hero-team.jpg",
+      "description": "אוטומציה, סוכני AI ומערכות CRM מותאמות לעסקים. איתור התהליכים שמעכבים את העסק ובניית פתרונות טכנולוגיים שחוסכים זמן ומצמצמים עבודה ידנית.",
+      "founder": { "@id": "https://reutaisolutions.com/#reut-maor" },
+      "areaServed": { "@type": "Country", "name": "Israel" },
+      "knowsAbout": [
+        "אוטומציה עסקית",
+        "Business process automation",
+        "סוכני AI לעסקים",
+        "AI agents",
+        "מערכות CRM מותאמות אישית",
+        "Custom CRM development",
+        "אוטומציה של וואטסאפ",
+        "WhatsApp automation",
+        "פיתוח כלים ואפליקציות לעסקים",
+        "Software development",
+        "ייעול תהליכים עסקיים"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "שירותי Reut AI",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "אוטומציה לעסקים", "description": "ייעול תהליכים חוזרים ואוטומציה עסקית שמחברת בין מערכות וחוסכת עבודה ידנית." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "סוכני AI לעסקים", "description": "בניית סוכני AI ממוקדים שמחוברים לידע ולמערכות של העסק ומבצעים משימות בתוך תהליך העבודה." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "מערכות CRM מותאמות אישית", "description": "מערכות לניהול לקוחות ותהליכים שמתוכננות סביב זרימת העבודה האמיתית של העסק." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "אוטומציה של וואטסאפ וצ׳אט", "description": "מענה אוטומטי, איסוף פרטים וניתוב פניות בוואטסאפ ובצ׳אט, מחובר ל-CRM ולתהליכים העסקיים." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "תהליכי עבודה מונעי נתונים", "description": "חיבור בין הנתונים, הכלים והתהליכים של העסק לזרימת עבודה אחת ויעילה." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "כלים מותאמים אישית", "description": "תכנון ובנייה מאפס של כלים ומערכות לפתרון אתגרים תפעוליים ייחודיים." } }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://reutaisolutions.com/#reut-maor",
+      "name": "רעות מאור",
+      "alternateName": "Reut Maor",
+      "jobTitle": "בונה אוטומציות ופתרונות AI לעסקים",
+      "worksFor": { "@id": "https://reutaisolutions.com/#organization" },
+      "knowsLanguage": ["he", "en"],
+      "workLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressCountry": "IL" } },
+      "knowsAbout": [
+        "אוטומציה עסקית",
+        "סוכני AI",
+        "מערכות CRM מותאמות אישית",
+        "אוטומציה של וואטסאפ",
+        "פיתוח תוכנה וכלים לעסקים",
+        "ייעול תהליכים עסקיים"
+      ],
+      "description": "רעות מאור, מייסדת Reut AI. רקע שמשלב מדעי המחשב ותפקידים טכנולוגיים עם ניסיון במכירות בישראל ובארצות הברית. בונה אוטומציות, סוכני AI, מערכות CRM מותאמות וכלים ייעודיים לעסקים קטנים ובינוניים."
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://reutaisolutions.com/#webpage",
+      "url": "https://reutaisolutions.com/",
+      "name": "אוטומציה ו-AI לעסקים | Reut AI",
+      "description": "אוטומציה, סוכני AI ומערכות CRM מותאמות לעסקים. איתור תהליכים שמעכבים את העסק ובונה פתרונות שחוסכים זמן ועבודה ידנית.",
+      "inLanguage": "he-IL",
+      "isPartOf": { "@id": "https://reutaisolutions.com/#website" },
+      "about": { "@id": "https://reutaisolutions.com/#organization" },
+      "primaryImageOfPage": "https://reutaisolutions.com/assets/hero-team.jpg"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "כמה עולה לבנות אוטומציה לעסק?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "אין מחיר אחיד, כי אוטומציה יכולה להיות תהליך פשוט יחסית או פתרון שמחבר כמה מערכות ותהליכים עסקיים. המחיר תלוי במורכבות התהליך, במספר המערכות והחיבורים ביניהן, בכמות הלוגיקה המותאמת אישית, בשאלה אם נדרש רכיב של AI, ובהיקף הבדיקות וההטמעה. לכן הצעד הראשון הוא תמיד להבין את התהליך ולהחליט מה באמת כדאי להפוך לאוטומטי — ורק אז אפשר לאמוד את הפרויקט."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "כמה עולה סוכן AI לעסק?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "זה תלוי במה שהסוכן צריך לעשות. סוכן פשוט שעונה על שאלות מתוך מקור ידע מוגדר הוא לא אותו דבר כמו סוכן שמתחבר ל-CRM ולמערכות העסק, מבצע פעולות, מעבד מסמכים או משתתף בתהליך רב־שלבי. לכן אני מאפיינת את הפרויקט לפי היכולות הנדרשות, החיבורים, מקורות המידע ורמת ההתאמה האישית — ומשם נגזר המחיר."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "כמה זמן לוקח להקים אוטומציה?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "משך ההקמה תלוי במורכבות התהליך. אוטומציה ממוקדת אחת יכולה לעלות לאוויר הרבה יותר מהר ממערכת שמערבת כמה פלטפורמות, חוקים עסקיים, AI ופיתוח מותאם. אני מתחילה ממיפוי התהליך הקיים, מזהה את צוואר הבקבוק, מגדירה את הפתרון, ורק אז בונה ובודקת. לוחות הזמנים המדויקים נקבעים אחרי שלב האפיון, לפי מה שהתברר בו."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "האם כל עסק צריך מערכת CRM מותאמת?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "לא. מערכת CRM מותאמת נכונה כשהמערכות הקיימות בשוק לא מתאימות לאופן שבו העסק עובד — הן יוצרות עבודה ידנית מיותרת, מחייבות עקיפות, או לא מצליחות לחבר בין המידע והתהליכים הרלוונטיים. אם כבר יש מערכת שנותנת מענה טוב לצורך העסקי, אין סיבה לבנות משהו מותאם רק בשביל לבנות."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "מתי לא כדאי לעשות אוטומציה?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "אוטומציה היא לא תמיד הפתרון הנכון. לרוב לא כדאי כשהתהליך קורה לעיתים רחוקות מאוד, כשהוא עדיין לא מוגדר בבירור, כשהוא משתנה כל הזמן, כשעלות האוטומציה גבוהה מהבעיה שהיא פותרת, או כששינוי פשוט בתהליך היה פותר את זה ממילא. המטרה היא לא להפוך הכול לאוטומטי — אלא לזהות איפה טכנולוגיה באמת יוצרת ערך עסקי."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="scrollcraft.js"></script>
+<script src="page.js"></script>
+</body>
+</html>

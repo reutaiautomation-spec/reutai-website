@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מדיניות פרטיות | Reut AI</title>
+<meta name="description" content="מדיניות הפרטיות של Reut AI — איזה מידע נאסף דרך טופס יצירת הקשר, כיצד הוא נשמר ובמה נעשה בו שימוש.">
+<link rel="canonical" href="https://reutaisolutions.com/privacy.html">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+:root {
+  --sc-canvas: #1A1220; --sc-surface: #241A2E; --sc-ink: #F3EEF6; --sc-ink-soft: #9C90AA;
+  --sc-accent: #FF4FA3; --sc-accent-ink: #17060F;
+  --sc-font-display: "Heebo", system-ui, sans-serif; --sc-font-text: "Heebo", system-ui, sans-serif;
+  --sc-font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --brand-pink: #FF4FA3; --brand-turquoise: #3FE0C5; --brand-purple: #A78BFA;
+  --sc-hairline: color-mix(in oklab, var(--sc-ink) 14%, transparent);
+  --sc-hairline-strong: color-mix(in oklab, var(--sc-ink) 26%, transparent);
+}
+::selection { background: var(--brand-pink); color: #17060F; }
+body { overflow-x: clip; }
+.folio {
+  position: sticky; inset-inline: 0; top: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(0.9rem, 2vw, 1.4rem) var(--sc-gutter);
+  background: color-mix(in oklab, var(--sc-canvas) 88%, transparent);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--sc-hairline);
+}
+.folio__mark { display: flex; align-items: center; gap: 0.6rem; font-family: var(--sc-font-display); font-weight: 800; font-size: 1.05rem; color: var(--sc-ink); text-decoration: none; }
+.folio__mark svg { width: 30px; height: 30px; flex-shrink: 0; }
+.folio__back { font-family: var(--sc-font-text); font-size: 0.85rem; font-weight: 600; color: var(--sc-ink-soft); text-decoration: none; border-bottom: 1px solid var(--sc-hairline-strong); padding-bottom: 2px; }
+.folio__back:hover { color: var(--brand-pink); border-color: var(--brand-pink); }
+
+.legal-hero { padding: clamp(3rem, 8vh, 6rem) var(--sc-gutter) 1rem; max-width: var(--sc-maxw); margin-inline: auto; }
+.legal-hero h1 { font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.8rem, 1.4rem + 2vw, 2.6rem); margin: 0 0 0.6rem; }
+.legal-hero p { color: var(--sc-ink-soft); margin: 0; }
+
+.legal-content { max-width: 46rem; margin: 0 auto; padding: 2rem var(--sc-gutter) 7rem; }
+.legal-content h2 { font-family: var(--sc-font-display); font-size: 1.25rem; font-weight: 700; margin: 2.2rem 0 0.9rem; }
+.legal-content h2:first-child { margin-top: 0; }
+.legal-content p { color: var(--sc-ink-soft); line-height: 1.7; margin: 0 0 0.9rem; }
+.legal-content ul { margin: 0 0 0.9rem; padding-inline-start: 1.4rem; list-style: disc; color: var(--sc-ink-soft); }
+.legal-content li { margin-bottom: 0.4rem; }
+.legal-content a { color: var(--brand-turquoise); text-decoration: underline; }
+.legal-content a:hover { color: var(--sc-ink); }
+
+.site-footer { border-top: 1px solid var(--sc-hairline); padding: 1.8rem var(--sc-gutter); }
+.footer-inner { max-width: var(--sc-maxw); margin-inline: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.3rem; font-size: 0.82rem; color: var(--sc-ink-soft); }
+.footer-inner a { color: var(--sc-ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+.footer-inner a:hover { color: var(--sc-ink); }
+
+.a11y-fab { position: fixed; bottom: 20px; left: 20px; z-index: 300; width: 52px; height: 52px; border-radius: 50%; border: none; cursor: pointer; background: var(--brand-pink); color: #17060F; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px -8px color-mix(in oklab, var(--brand-pink) 60%, transparent); }
+.a11y-fab svg { width: 26px; height: 26px; }
+.a11y-panel { position: fixed; bottom: 82px; left: 20px; z-index: 300; width: 260px; background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong); border-radius: var(--sc-r-lg); padding: 1.1rem; box-shadow: var(--sc-e3); display: none; flex-direction: column; gap: 0.8rem; }
+.a11y-panel.open { display: flex; }
+.a11y-panel h2 { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.2rem; }
+.a11y-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.a11y-row span { font-size: 0.85rem; color: var(--sc-ink-soft); }
+.a11y-row .grp { display: flex; gap: 6px; }
+.a11y-panel button { font-family: var(--sc-font-text); font-size: 0.8rem; background: var(--sc-canvas); color: var(--sc-ink); border: 1px solid var(--sc-hairline-strong); border-radius: var(--sc-r-sm); padding: 6px 10px; cursor: pointer; }
+.a11y-panel button[aria-pressed="true"] { background: var(--brand-pink); border-color: var(--brand-pink); color: #17060F; }
+.a11y-reset { text-align: center; margin-top: 0.2rem; }
+html.a11y-reduce-motion * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+html.a11y-high-contrast { --sc-canvas:#000; --sc-surface:#000; --sc-ink:#fff; --sc-ink-soft:#fff; --sc-hairline:#fff; --sc-hairline-strong:#fff; --brand-pink:#ff7fc0; --brand-turquoise:#7ff2df; --brand-purple:#c9b8ff; }
+html { font-size: calc(100% * var(--a11y-scale, 1)); }
+</style>
+</head>
+<body>
+
+<nav class="folio" aria-label="ניווט ראשי">
+  <a href="index.html" class="folio__mark">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <rect width="64" height="64" rx="16" fill="#1E0F19"/>
+      <circle cx="18" cy="16" r="3.2" fill="#FF4FA3"/><circle cx="14" cy="32" r="3.2" fill="#3FE0C5"/><circle cx="18" cy="48" r="3.2" fill="#A78BFA"/>
+      <path d="M18 16C26 16 26 26 34 32" fill="none" stroke="#FF4FA3" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14 32H34" fill="none" stroke="#3FE0C5" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 48C26 48 26 38 34 32" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="34" cy="32" r="9" fill="none" stroke="#FF4FA3" stroke-width="3"/><circle cx="34" cy="32" r="3" fill="#fff"/>
+    </svg>
+    Reut AI
+  </a>
+  <a href="index.html" class="folio__back">חזרה לאתר</a>
+</nav>
+
+<main>
+  <div class="legal-hero">
+    <h1>מדיניות פרטיות</h1>
+    <p>עודכן לאחרונה: 24 באוגוסט 2026</p>
+  </div>
+
+  <div class="legal-content">
+    <h2>איזה מידע נאסף</h2>
+    <p>כאשר אתם ממלאים את טופס יצירת הקשר באתר, אנו אוספים את הפרטים הבאים:</p>
+    <ul>
+      <li>שם מלא</li>
+      <li>כתובת אימייל</li>
+      <li>שם העסק (אופציונלי)</li>
+      <li>תוכן ההודעה שכתבתם בטופס</li>
+    </ul>
+    <p>האתר אינו אוסף מידע נוסף מעבר לכך, ואינו עוקב אחריכם בגלישה באתר.</p>
+
+    <h2>לשם מה נאסף המידע</h2>
+    <p>המידע משמש אך ורק כדי ליצור איתכם קשר, להבין את הצורך העסקי שהעליתם, ולהציע מענה או פתרון בהתאם. המידע אינו משמש לצרכי שיווק או פרסום ללא הסכמה נפרדת ומפורשת מצדכם.</p>
+
+    <h2>איך נשמר המידע</h2>
+    <p>הפרטים שאתם משאירים בטופס מועברים בהצפנת HTTPS, ונשמרים במערכת ניהול לקוחות (CRM) המשמשת אותי לניהול פניות. הגישה למידע מוגבלת לבעלת העסק בלבד.</p>
+
+    <h2>שיתוף מידע עם צדדים שלישיים</h2>
+    <p>המידע שלכם אינו נמכר, מושכר או משותף לצדדים שלישיים לצרכי שיווק. המידע מעובד באמצעות ספקי תשתית טכנולוגית התומכים בהפעלת האתר ובניהול הפניות (כגון שירותי אוטומציה ומערכת ה-CRM), אשר כפופים בעצמם למדיניות פרטיות ואבטחת מידע.</p>
+
+    <h2>עוגיות (Cookies)</h2>
+    <p>האתר אינו משתמש בעוגיות מעקב, כלי אנליטיקה או פיקסלים פרסומיים. הגופנים באתר נטענים משירות Google Fonts, שאינו שומר עוגיות בעת טעינת הגופנים.</p>
+
+    <h2>אבטחת מידע</h2>
+    <p>אנו נוקטים באמצעים סבירים כדי להגן על המידע שנאסף מפני גישה, שימוש או חשיפה שאינם מורשים, לרבות שימוש בהעברת מידע מוצפנת (HTTPS) והגבלת הגישה למידע לבעלת העסק בלבד.</p>
+
+    <h2>זכויותיכם</h2>
+    <p>בהתאם לחוק הגנת הפרטיות, אתם רשאים לבקש בכל עת לעיין במידע שנאסף עליכם, לתקן אותו או לבקש את מחיקתו.</p>
+    <p>לכל פנייה בנושא פרטיות המידע, ניתן לפנות אל רעות מאור במייל <a href="mailto:reutaiautomation@gmail.com">reutaiautomation@gmail.com</a> או בטלפון 053-339-1447.</p>
+
+    <h2>עדכונים למדיניות זו</h2>
+    <p>אנו עשויים לעדכן מדיניות זו מעת לעת. תאריך העדכון האחרון מופיע בראש העמוד.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© <span id="year"></span> Reut AI. כל הזכויות שמורות.</span>
+    <a href="accessibility-statement.html">הצהרת נגישות</a>
+    <a href="privacy.html">מדיניות פרטיות</a>
+  </div>
+</footer>
+
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="הגדרות נגישות">
+  <h2>הגדרות נגישות</h2>
+  <div class="a11y-row"><span>גודל טקסט</span><div class="grp"><button type="button" id="a11yFontDec" aria-label="הקטן טקסט">א-</button><button type="button" id="a11yFontInc" aria-label="הגדל טקסט">א+</button></div></div>
+  <div class="a11y-row"><span>ניגודיות גבוהה</span><button type="button" id="a11yContrastToggle" aria-pressed="false">הפעלה</button></div>
+  <div class="a11y-row"><span>עצירת אנימציות</span><button type="button" id="a11yMotionToggle" aria-pressed="false">הפעלה</button></div>
+  <button type="button" class="a11y-reset" id="a11yReset">איפוס הגדרות</button>
+</div>
+<button type="button" class="a11y-fab" id="a11yToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="a11yPanel" aria-label="פתיחת תפריט נגישות">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="4" r="2" fill="currentColor"/>
+    <path d="M4 8.5C6.5 9.5 9 10 12 10C15 10 17.5 9.5 20 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 10V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 14L7 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 14L17 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<script src="page.js"></script>
+</body>
+</html>
