@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Reut AI | העבודה שחוזרת על עצמה בעסק יכולה לקרות לבד</title>
+<meta name="description" content="רעות מאור בונה אוטומציות, בוטים לוואטסאפ, הדרכות AI מעשיות ומערכות בהתאמה אישית לעסקים שמבזבזים זמן על עבודה ידנית שחוזרת על עצמה.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='9 10 37 44'><path d='M18 16C26 16 26 26 34 32M14 32H34M18 48C26 48 26 38 34 32' fill='none' stroke='%237C5CF0' stroke-width='2.6' stroke-linecap='round'/><circle cx='18' cy='16' r='3.6' fill='%23E5397F'/><circle cx='14' cy='32' r='3.6' fill='%2312B39A'/><circle cx='18' cy='48' r='3.6' fill='%237C5CF0'/><circle cx='34' cy='32' r='8.5' fill='white' stroke='%23E5397F' stroke-width='3.4'/><circle cx='34' cy='32' r='3.2' fill='%230E1A2B'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Icon set: one symbol per situation and per capability -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2"/><path d="M15.5 8.5V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7.5a2 2 0 0 0 2 2h2.5"/></symbol>
+    <symbol id="i-wait" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.4-5A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 12h.01M12.25 12h.01M16 12h.01" stroke-width="2.6"/></symbol>
+    <symbol id="i-ask" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.4-5A8.5 8.5 0 1 1 21 12z"/><path d="M10 9.6a2.2 2.2 0 1 1 3 2c-.6.3-1 .8-1 1.4v.4M12 16.2h.01"/></symbol>
+    <symbol id="i-week" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path d="M3.5 10h17M8 3v3.8M16 3v3.8"/><path d="M8.7 15.3a3.4 3.4 0 0 0 6.2.9M15.3 14.4a3.4 3.4 0 0 0-6.2-.9"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.6-4.6M7.8 10.5h5.4"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M11 3.5l1.9 5.1 5.1 1.9-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9L11 3.5z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z"/></symbol>
+    <symbol id="i-sheets" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 9.5v10M15 9.5v10"/></symbol>
+
+    <symbol id="i-auto" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 12.9-5.2L19.5 9"/><path d="M19.5 4.5V9H15"/><path d="M19.5 12a7.5 7.5 0 0 1-12.9 5.2L4.5 15"/><path d="M4.5 19.5V15H9"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.4-5A8.5 8.5 0 1 1 21 12z"/><path d="M8.6 12.2l2.3 2.3 4.5-4.8"/></symbol>
+    <symbol id="i-learn" viewBox="0 0 24 24"><path d="M2.5 9L12 4.5 21.5 9 12 13.5 2.5 9z"/><path d="M6.5 11v4.6c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3V11M21.5 9v5"/></symbol>
+    <symbol id="i-system" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.6"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.6"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.6"/><path d="M16.75 13.5v6.5M13.5 16.75H20"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#contact">דילוג לטופס יצירת הקשר</a>
+
+<header class="top">
+  <a class="logo" href="#" aria-label="Reut AI, לראש העמוד">
+    <svg viewBox="9 10 37 44" aria-hidden="true" focusable="false">
+      <path d="M18 16C26 16 26 26 34 32" fill="none" stroke="var(--pink)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M14 32H34" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M18 48C26 48 26 38 34 32" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="18" cy="16" r="3.4" fill="var(--pink)"/>
+      <circle cx="14" cy="32" r="3.4" fill="var(--teal)"/>
+      <circle cx="18" cy="48" r="3.4" fill="var(--violet)"/>
+      <circle cx="34" cy="32" r="8.5" fill="var(--paper)" stroke="var(--pink)" stroke-width="3"/>
+      <circle cx="34" cy="32" r="3" fill="var(--ink)"/>
+    </svg>
+    <span translate="no">Reut <b>AI</b></span>
+  </a>
+  <a class="top__cta" href="#contact"><span class="hide-sm">ספרו לי מה חוזר אצלכם</span><span class="show-sm">בואו נדבר</span></a>
+</header>
+
+<main>
+
+<!-- 1. Promise -->
+<section class="hero">
+  <div class="hero__text">
+    <h1>העבודה שחוזרת על עצמה בעסק שלכם יכולה לקרות לבד.</h1>
+    <p class="hero__sub">אני רעות מאור. אני בונה את הטכנולוגיה שלוקחת מהעסק את ההעתקות, ההודעות החוזרות והמשימות שמישהו צריך לזכור.</p>
+    <a class="button" href="#contact">ספרו לי מה חוזר אצלכם</a>
+  </div>
+  <!-- The logo lock-up, large: three sources draw into one ring, the name emerges from it, then the sources keep flowing in. -->
+  <div class="hero__mark" aria-hidden="true">
+    <svg class="hmark" viewBox="6 8 94 48">
+      <circle class="hmark__halo" cx="34" cy="32" r="15"/>
+      <path id="hm-p1" class="hmark__line hmark__line--1" pathLength="1" d="M18 16C26 16 26 26 34 32"/>
+      <path id="hm-p2" class="hmark__line hmark__line--2" pathLength="1" d="M14 32H34"/>
+      <path id="hm-p3" class="hmark__line hmark__line--3" pathLength="1" d="M18 48C26 48 26 38 34 32"/>
+
+      <circle class="hmark__pulse hmark__pulse--1" r="1.5"><animateMotion dur="2.6s" begin="2.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#hm-p1"/></animateMotion></circle>
+      <circle class="hmark__pulse hmark__pulse--2" r="1.5"><animateMotion dur="2.6s" begin="3.07s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#hm-p2"/></animateMotion></circle>
+      <circle class="hmark__pulse hmark__pulse--3" r="1.5"><animateMotion dur="2.6s" begin="3.93s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#hm-p3"/></animateMotion></circle>
+
+      <circle class="hmark__dot hmark__dot--1" cx="18" cy="16" r="2.7"/>
+      <circle class="hmark__dot hmark__dot--2" cx="14" cy="32" r="2.7"/>
+      <circle class="hmark__dot hmark__dot--3" cx="18" cy="48" r="2.7"/>
+      <circle class="hmark__ring" pathLength="1" cx="34" cy="32" r="8"/>
+      <circle class="hmark__core" cx="34" cy="32" r="2.6"/>
+      <text class="hmark__word" x="50.5" y="32" direction="ltr" dominant-baseline="central" translate="no">Reut<tspan class="hmark__ai" dx="2.6">AI</tspan></text>
+    </svg>
+  </div>
+</section>
+
+<!-- 2. Recognition: one situation at a time, today → instead -->
+<section class="day" id="day" aria-labelledby="dayTitle">
+  <div class="day__track" id="dayTrack">
+    <div class="day__stage">
+      <div class="day__head">
+        <h2 class="day__intro" id="dayTitle">יום רגיל בעסק. נשמע מוכר?</h2>
+        <p class="day__count" aria-hidden="true"><span id="dayIndex">1</span> מתוך <span id="dayTotal">7</span></p>
+      </div>
+
+      <ol class="day__list" id="dayList">
+        <li class="sit" data-kind="automation">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-copy"/></svg><span class="sit__badge"><svg><use href="#i-auto"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">העתקתם היום פרטים ממערכת אחת לאחרת?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">פנייה מגיעה במייל. מישהו מעתיק אותה לאקסל, ואחר כך מעדכן אותה שוב במערכת הלקוחות.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>הפרטים נקלטים ומתעדכנים בכל המערכות מעצמם. אף אחד לא מעתיק כלום.</dd></div>
+            </dl>
+            <p class="sit__kind">אוטומציה</p>
+          </div>
+        </li>
+
+        <li class="sit" data-kind="whatsapp">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-wait"/></svg><span class="sit__badge"><svg><use href="#i-bot"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">נכנס ליד בוואטסאפ ואף אחד לא ענה בזמן?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">ההודעה הגיעה בשמונה בערב. כשמישהו התפנה לענות למחרת, הלקוח כבר דיבר עם מישהו אחר.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>הלקוח מקבל תשובה מיד, עונה על כמה שאלות קצרות, ומגיע אליכם עם כל הפרטים.</dd></div>
+            </dl>
+            <p class="sit__kind">בוט WhatsApp</p>
+          </div>
+        </li>
+
+        <li class="sit" data-kind="whatsapp">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-ask"/></svg><span class="sit__badge"><svg><use href="#i-bot"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">שאלו אתכם היום שוב כמה זה עולה?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">אותן חמש שאלות מגיעות כל יום, ומישהו בצוות עוצר את מה שהוא עושה כדי לענות עליהן.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>התשובות הקבועות יוצאות לבד. רק שאלה שבאמת צריכה אתכם מגיעה אליכם.</dd></div>
+            </dl>
+            <p class="sit__kind">בוט WhatsApp</p>
+          </div>
+        </li>
+
+        <li class="sit" data-kind="automation">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-week"/></svg><span class="sit__badge"><svg><use href="#i-auto"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">יש משימה שקורית כל שבוע רק כי מישהו זוכר אותה?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">תזכורת תשלום, דוח שבועי, הודעה ללקוחות. כשהאדם הזה בחופש, זה פשוט לא קורה.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>המשימה רצה בזמן שלה, כל שבוע, ואתם מקבלים עדכון שהיא בוצעה.</dd></div>
+            </dl>
+            <p class="sit__kind">אוטומציה</p>
+          </div>
+        </li>
+
+        <li class="sit" data-kind="automation">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-search"/></svg><span class="sit__badge"><svg><use href="#i-auto"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">מישהו אצלכם עובר כל שבוע על אותם אתרים?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">מחפש, מעתיק לטבלה ומסנן ביד. בשבוע הבא הוא מתחיל שוב מאפס.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>המידע נאסף לפי הכללים שלכם ומגיע אליכם מסודר ומסונן.</dd></div>
+            </dl>
+            <p class="sit__kind">אוטומציה</p>
+          </div>
+        </li>
+
+        <li class="sit" data-kind="training">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-spark"/></svg><span class="sit__badge"><svg><use href="#i-learn"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">ברור לכם ש-AI יכול לעזור, אבל לא ברור במה?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">פתחתם ChatGPT, ניסיתם כמה דברים, וחזרתם לעבוד בדיוק כמו קודם.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>בוחרים משימה אמיתית מהעבודה שלכם, לומדים את הכלים שמתאימים לה, ויוצאים עם משהו שעובד.</dd></div>
+            </dl>
+            <p class="sit__kind">הדרכת AI</p>
+          </div>
+        </li>
+
+        <li class="sit" data-kind="custom">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-sheets"/></svg><span class="sit__badge"><svg><use href="#i-system"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">העסק רץ על עשרה קבצי אקסל ואף מערכת לא מתאימה?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">לכל אחד בצוות יש גרסה משלו, וחלק מהמידע נמצא רק בראש של מישהו.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>מערכת אחת שבנויה סביב הדרך שבה אתם עובדים, עם המסכים שאתם באמת צריכים.</dd></div>
+            </dl>
+            <p class="sit__kind">מערכת בהתאמה אישית</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 3. What I build -->
+<section class="build" aria-labelledby="buildTitle">
+  <h2 id="buildTitle">זיהיתם משהו? את זה אני בונה.</h2>
+  <ul class="build__list">
+    <li data-kind="automation">
+      <span class="tile" aria-hidden="true"><svg><use href="#i-auto"/></svg></span>
+      <h3>אוטומציות</h3>
+      <p>העתקה, הזנת נתונים, תזכורות, מסמכים והודעות. כל פעולה במחשב שאתם עושים שוב ושוב יכולה לקרות בלי שמישהו יעשה אותה.</p>
+    </li>
+    <li data-kind="whatsapp">
+      <span class="tile" aria-hidden="true"><svg><use href="#i-bot"/></svg></span>
+      <h3>בוט WhatsApp</h3>
+      <p>עונה לכל פנייה מיד, גם בערב. אוסף פרטים, עונה על השאלות הקבועות, ומעביר אליכם לידים מסודרים.</p>
+    </li>
+    <li data-kind="training">
+      <span class="tile" aria-hidden="true"><svg><use href="#i-learn"/></svg></span>
+      <h3>הדרכת AI</h3>
+      <p>מפגש מעשי סביב משימה מהעבודה שלכם. לומדים את הכלים שמתאימים לה ויוצאים עם תוצר שאפשר להמשיך לעבוד איתו.</p>
+    </li>
+    <li data-kind="custom">
+      <span class="tile" aria-hidden="true"><svg><use href="#i-system"/></svg></span>
+      <h3>מערכת בהתאמה אישית</h3>
+      <p>כשאוטומציה או תוכנה קיימת לא מספיקות, אני בונה מערכת שלמה סביב התהליך שלכם.</p>
+    </li>
+  </ul>
+  <p class="build__note">לא צריך לדעת מראש מה מתאים לכם. את זה מבררים בשיחה הראשונה.</p>
+</section>
+
+<!-- 4. Proof -->
+<section class="proof" aria-labelledby="proofTitle">
+  <h2 id="proofTitle">מה זה שינה אצל עסקים שעבדתי איתם</h2>
+  <ul class="proof__list">
+    <li data-kind="whatsapp">
+      <p class="proof__who">מחנה קיץ <span class="proof__tag">בוט WhatsApp</span></p>
+      <p class="proof__was">הצוות ענה כל היום על אותן שאלות במקום לטפל בהרשמות.</p>
+      <p class="proof__now">בוט WhatsApp עונה עליהן עכשיו, והצוות מתפנה למכירות.</p>
+    </li>
+    <li data-kind="custom">
+      <p class="proof__who">משרד לתיווך עסקים <span class="proof__tag">מערכת בהתאמה אישית</span></p>
+      <p class="proof__was">כל התאמה בין קונה לעסק שמוצע למכירה עברה דרך בעל המשרד.</p>
+      <p class="proof__now">מערכת CRM שבניתי מציעה את ההתאמות לבד, והתהליך מתקדם גם בלי שהוא מעורב בכל צעד.</p>
+    </li>
+    <li data-kind="automation">
+      <p class="proof__who">וובינרים בתשלום <span class="proof__tag">אוטומציה</span></p>
+      <p class="proof__was">הרשמה, אימות תשלום ושליחת גישה אישית נעשו ביד, משתתף אחרי משתתף.</p>
+      <p class="proof__now">כל השרשרת קורית אוטומטית, וכל משתתף מקבל גישה מאובטחת משלו.</p>
+    </li>
+    <li data-kind="training">
+      <p class="proof__who">כתיבת ביוגרפיות <span class="proof__tag">סוכן AI</span></p>
+      <p class="proof__was">כתיבה של ביוגרפיה אחת לקחה חודשים.</p>
+      <p class="proof__now">סוכן AI שלומד את סגנון הכותב ועובד מחומרי המקור קיצר את זה לכשבוע.</p>
+    </li>
+  </ul>
+</section>
+
+<!-- 5. How it starts -->
+<section class="start" aria-labelledby="startTitle">
+  <h2 id="startTitle">איך מתחילים</h2>
+  <ol class="start__steps">
+    <li>
+      <h3>מספרים לי מה קורה</h3>
+      <p>שיחה קצרה על העבודה שחוזרת אצלכם ועל המקומות שבהם דברים נופלים. בשפה שלכם.</p>
+    </li>
+    <li>
+      <h3>אני ממפה ומציעה</h3>
+      <p>אני לומדת איך התהליך עובד היום ומציעה פתרון אחד ברור. כולל מה לא שווה להפוך לאוטומטי.</p>
+    </li>
+    <li>
+      <h3>בונים ומכניסים לשגרה</h3>
+      <p>אני בונה, בודקת איתכם, ומוודאת שזה עובד בתוך היום-יום של העסק.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- 6. About -->
+<section class="about" aria-labelledby="aboutTitle">
+  <img class="about__photo" src="../assets/about-photo.jpg" width="1086" height="1448" alt="רעות מאור" loading="lazy">
+  <div class="about__text">
+    <h2 id="aboutTitle">נעים מאוד, רעות.</h2>
+    <p>אחרי תואר במדעי המחשב עבדתי כמה שנים בתפקידים טכנולוגיים, ואז עברתי למכירות, בישראל ובארצות הברית. במכירות ראיתי מקרוב איפה לידים הולכים לאיבוד ואיפה צוותים שוקעים בעבודה ידנית.</p>
+    <p>היום אני מחברת בין שני העולמות. אני מבינה איך העסק שלכם עובד, ובוחרת את הפתרון הפשוט ביותר שיעבוד בו.</p>
+  </div>
+</section>
+
+<!-- 7. Contact -->
+<section class="contact" id="contact" aria-labelledby="contactTitle">
+  <div class="contact__intro">
+    <h2 id="contactTitle">מה חוזר אצלכם?</h2>
+    <p>כתבו במשפט או שניים איזו עבודה חוזרת על עצמה, או איפה דברים נופלים בין הכיסאות. לא צריך לדעת איך קוראים לפתרון. אני אחזור אליכם.</p>
+    <p class="contact__wa"><span class="contact__wa-icon" aria-hidden="true"><svg><use href="#i-bot"/></svg></span>מעדיפים וואטסאפ? <a href="https://katzr.net/c5e3a2" target="_blank" rel="noopener" data-wa data-wa-loc="contact_section">כתבו לי שם</a></p>
+  </div>
+
+  <form class="form" id="contactForm" novalidate>
+    <div class="field field--wide">
+      <label for="message">מה קורה אצלכם היום?</label>
+      <textarea id="message" name="message" rows="5" required placeholder="למשל: כל ליד שמגיע בוואטסאפ אנחנו מעתיקים ביד לאקסל…"></textarea>
+    </div>
+    <div class="field">
+      <label for="fullName">שם</label>
+      <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <label for="email">אימייל</label>
+      <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" dir="ltr" required>
+    </div>
+    <div class="field field--wide">
+      <label for="business">שם העסק <span class="optional">(לא חובה)</span></label>
+      <input id="business" name="business" type="text" autocomplete="organization">
+    </div>
+    <div class="consent field--wide">
+      <input id="privacyConsent" name="privacyConsent" type="checkbox" required>
+      <label for="privacyConsent">קראתי ואני מסכים/ה ל<a href="../privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></label>
+    </div>
+    <div class="form__end field--wide">
+      <button class="button" type="submit">שלחו לרעות</button>
+      <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p>© <span id="year"></span> <span translate="no">Reut AI</span></p>
+  <p><a href="../accessibility-statement.html">הצהרת נגישות</a> <a href="../privacy.html">מדיניות פרטיות</a></p>
+</footer>
+
+<button type="button" class="a11y" id="a11yToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="a11yPanel" aria-label="הגדרות נגישות">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="4.5" r="1.8" fill="currentColor"/><path d="M5 8.5c2.3.9 4.6 1.3 7 1.3s4.7-.4 7-1.3M12 10v10M12 14l-4 6M12 14l4 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="הגדרות נגישות" hidden>
+  <div class="a11y-row"><span>גודל טקסט</span><span><button type="button" id="a11yFontDec" aria-label="הקטנת טקסט">א-</button><button type="button" id="a11yFontInc" aria-label="הגדלת טקסט">א+</button></span></div>
+  <div class="a11y-row"><span>ניגודיות גבוהה</span><button type="button" id="a11yContrast" aria-pressed="false">הפעלה</button></div>
+  <div class="a11y-row"><span>עצירת אנימציות</span><button type="button" id="a11yMotion" aria-pressed="false">הפעלה</button></div>
+  <button type="button" class="a11y-reset" id="a11yReset">איפוס</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
