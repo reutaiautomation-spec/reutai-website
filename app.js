@@ -134,7 +134,8 @@
       root.classList.toggle('js-motion', on);
       if (on && !pending.length) {
         $all('.build__list li').forEach(function (li, i) { li.style.setProperty('--i', i); });
-        var sel = '.build__list li, .build__note, .proof__list li, .day .sit, .form';
+        $all('.faq details').forEach(function (d, i) { d.style.setProperty('--i', i); });
+        var sel = '.build__list li, .build__note, .proof__list li, .day .sit, .form, .areas .panels, .faq';
         // on phones the steps stack: reveal each one as it scrolls in
         if (window.innerWidth < 900) sel += ', .start__steps li';
         pending = $all(sel).filter(function (el) { return !el.classList.contains('is-in'); });
@@ -150,6 +151,39 @@
     new MutationObserver(function () {
       if (root.classList.contains('js-motion') === reduced()) enable();
     }).observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  /* ------------------------------------------- business-area tabs (ARIA) */
+  function initTabs() {
+    var tabs = $all('[role="tab"]');
+    if (!tabs.length) return;
+    function select(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        var panel = $('#' + t.getAttribute('aria-controls'));
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        panel.hidden = !on;
+        panel.classList.remove('is-shown');
+      });
+      // replay the rows' entrance for the panel just shown
+      var shown = $('#' + tab.getAttribute('aria-controls'));
+      $all('.row', shown).forEach(function (r, i) { r.style.setProperty('--r', i); });
+      void shown.offsetWidth;
+      shown.classList.add('is-shown');
+      if (focus) tab.focus();
+      if (focus) tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(tab); });
+      tab.addEventListener('keydown', function (e) {
+        // RTL: the "next" tab sits to the left.
+        var step = { ArrowLeft: 1, ArrowRight: -1, Home: -i, End: tabs.length - 1 - i }[e.key];
+        if (step === undefined) return;
+        e.preventDefault();
+        select(tabs[(i + step + tabs.length) % tabs.length], true);
+      });
+    });
   }
 
   /* -------------------------------------------------------- contact form */
@@ -185,11 +219,14 @@
       btn.disabled = true;
       status.classList.remove('is-error');
       status.textContent = 'שולח...';
+      var areaInput = form.querySelector('input[name="area"]:checked');
+      var area = areaInput ? areaInput.value : '';
       var payload = {
         fullName: form.fullName.value,
         email: form.email.value,
         business: form.business.value,
-        message: form.message.value
+        message: (area ? 'תחום: ' + area + '\n\n' : '') + form.message.value,
+        area: area
       };
       fetch(WEBHOOK, {
         method: 'POST',
@@ -198,7 +235,7 @@
       }).then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         status.textContent = 'תודה! ההודעה נשלחה, אחזור אליכם בהקדם.';
-        trackEvent('lead_form_submit', { form_id: 'contactForm', has_business: !!payload.business });
+        trackEvent('lead_form_submit', { form_id: 'contactForm', has_business: !!payload.business, area: area || 'none' });
         form.reset();
         started = false;
       }).catch(function () {
@@ -254,7 +291,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     // Each part starts on its own, so a failure in one never stops the form.
-    [initForm, initWhatsApp, initA11y, initDay, initMotion, function () {
+    [initForm, initWhatsApp, initA11y, initDay, initTabs, initMotion, function () {
       $('#year').textContent = new Date().getFullYear();
     }].forEach(function (init) {
       try { init(); } catch (err) { if (window.console) console.error(err); }

@@ -49,6 +49,12 @@
     <symbol id="i-bot" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.4-5A8.5 8.5 0 1 1 21 12z"/><path d="M8.6 12.2l2.3 2.3 4.5-4.8"/></symbol>
     <symbol id="i-learn" viewBox="0 0 24 24"><path d="M2.5 9L12 4.5 21.5 9 12 13.5 2.5 9z"/><path d="M6.5 11v4.6c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3V11M21.5 9v5"/></symbol>
     <symbol id="i-system" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.6"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.6"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.6"/><path d="M16.75 13.5v6.5M13.5 16.75H20"/></symbol>
+    <symbol id="i-sales" viewBox="0 0 24 24"><path d="M4 19.5h16M6.5 16V11M11 16V7.5M15.5 16v-5.5M20 16V5"/></symbol>
+    <symbol id="i-service" viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19c0 1.5-2 2.5-5 2.5"/></symbol>
+    <symbol id="i-ops" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></symbol>
+    <symbol id="i-docs" viewBox="0 0 24 24"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M14 3.5v5h5M8.5 13h7M8.5 16.5h5"/></symbol>
+    <symbol id="i-team" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16.5 11.5a2.6 2.6 0 1 0 0-5.2M17.5 14.2A5 5 0 0 1 20.5 19"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   </defs>
 </svg>
 
@@ -77,7 +83,7 @@
 <section class="hero">
   <div class="hero__text">
     <h1>העבודה שחוזרת על עצמה בעסק שלכם יכולה לקרות לבד.</h1>
-    <p class="hero__sub">אני רעות מאור. אני בונה את הטכנולוגיה שלוקחת מהעסק את ההעתקות, ההודעות החוזרות והמשימות שמישהו צריך לזכור.</p>
+    <p class="hero__sub">אני בונה את הטכנולוגיה שלוקחת מהעסק את ההעתקות, ההודעות החוזרות והמשימות שמישהו צריך לזכור.</p>
     <a class="button" href="#contact">ספרו לי מה חוזר אצלכם</a>
   </div>
   <!-- The logo lock-up, large: three sources draw into one ring, the name emerges from it, then the sources keep flowing in. -->
@@ -112,6 +118,18 @@
       </div>
 
       <ol class="day__list" id="dayList">
+        <li class="sit" data-kind="training">
+          <div class="sit__art" aria-hidden="true"><svg><use href="#i-spark"/></svg><span class="sit__badge"><svg><use href="#i-learn"/></svg></span></div>
+          <div class="sit__body">
+            <p class="sit__q">ברור לכם ש-AI יכול לעזור, אבל לא ברור במה?</p>
+            <dl class="sit__pair">
+              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">פתחתם ChatGPT, ניסיתם כמה דברים, וחזרתם לעבוד בדיוק כמו קודם.</span></dd></div>
+              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>בוחרים משימה אמיתית מהעבודה שלכם, לומדים את הכלים שמתאימים לה, ויוצאים עם משהו שעובד.</dd></div>
+            </dl>
+            <p class="sit__kind">הדרכת AI</p>
+          </div>
+        </li>
+
         <li class="sit" data-kind="automation">
           <div class="sit__art" aria-hidden="true"><svg><use href="#i-copy"/></svg><span class="sit__badge"><svg><use href="#i-auto"/></svg></span></div>
           <div class="sit__body">
@@ -172,18 +190,6 @@
           </div>
         </li>
 
-        <li class="sit" data-kind="training">
-          <div class="sit__art" aria-hidden="true"><svg><use href="#i-spark"/></svg><span class="sit__badge"><svg><use href="#i-learn"/></svg></span></div>
-          <div class="sit__body">
-            <p class="sit__q">ברור לכם ש-AI יכול לעזור, אבל לא ברור במה?</p>
-            <dl class="sit__pair">
-              <div class="sit__row sit__row--today"><dt>היום</dt><dd><span class="strike">פתחתם ChatGPT, ניסיתם כמה דברים, וחזרתם לעבוד בדיוק כמו קודם.</span></dd></div>
-              <div class="sit__row sit__row--instead"><dt>במקום זה</dt><dd>בוחרים משימה אמיתית מהעבודה שלכם, לומדים את הכלים שמתאימים לה, ויוצאים עם משהו שעובד.</dd></div>
-            </dl>
-            <p class="sit__kind">הדרכת AI</p>
-          </div>
-        </li>
-
         <li class="sit" data-kind="custom">
           <div class="sit__art" aria-hidden="true"><svg><use href="#i-sheets"/></svg><span class="sit__badge"><svg><use href="#i-system"/></svg></span></div>
           <div class="sit__body">
@@ -198,6 +204,71 @@
       </ol>
     </div>
   </div>
+</section>
+
+<!-- 2b. Where the time goes -->
+<section class="areas" id="areas" aria-labelledby="areasTitle">
+    <div class="areas__head">
+      <h2 id="areasTitle">איפה בעסק שלכם הולך הכי הרבה זמן?</h2>
+      <p>רוב בעלי העסקים לא מחפשים "אוטומציה". הם רוצים להפסיק לעשות משהו ביד. בחרו את התחום שהכי מוכר לכם, ותראו איך זה יכול לעבוד אחרת.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="תחומים בעסק">
+      <button class="tab" role="tab" id="tab-sales" aria-controls="panel-sales" aria-selected="true"><svg aria-hidden="true"><use href="#i-sales"/></svg>מכירות ולידים</button>
+      <button class="tab" role="tab" id="tab-service" aria-controls="panel-service" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-service"/></svg>שירות לקוחות</button>
+      <button class="tab" role="tab" id="tab-ops" aria-controls="panel-ops" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-ops"/></svg>תפעול ושגרה</button>
+      <button class="tab" role="tab" id="tab-docs" aria-controls="panel-docs" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-docs"/></svg>מידע ומסמכים</button>
+      <button class="tab" role="tab" id="tab-team" aria-controls="panel-team" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-team"/></svg>הצוות ו-AI</button>
+    </div>
+
+    <div class="panels">
+      <div class="panel" role="tabpanel" id="panel-sales" aria-labelledby="tab-sales">
+        <div class="panel__head" aria-hidden="true"><span>מה קורה היום</span><span></span><span>איך זה יכול לעבוד</span><span></span></div>
+        <ul class="rows">
+          <li class="row" data-kind="whatsapp"><p class="row__now">ליד כותב בוואטסאפ בערב, ואף אחד לא עונה עד הבוקר.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">מענה מיידי, כמה שאלות סינון, והליד מגיע אליכם עם כל הפרטים.</p><span class="chip">בוט WhatsApp</span></li>
+          <li class="row" data-kind="automation"><p class="row__now">פניות מגיעות מהאתר, מהפייסבוק ומהטלפון, וכל אחת נרשמת במקום אחר. חלקן לא נרשמות בכלל.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">כל פנייה נכנסת לרשימה אחת, עם תזכורת מתי לחזור אליה.</p><span class="chip">אוטומציה</span></li>
+          <li class="row" data-kind="custom"><p class="row__now">אין לכם מושג כמה לידים באמת הפכו ללקוחות.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">תמונה מסודרת של כל ליד: מאיפה הגיע, איפה הוא עומד ומה קרה איתו.</p><span class="chip">מערכת בהתאמה אישית</span></li>
+        </ul>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-service" aria-labelledby="tab-service" hidden>
+        <div class="panel__head" aria-hidden="true"><span>מה קורה היום</span><span></span><span>איך זה יכול לעבוד</span><span></span></div>
+        <ul class="rows">
+          <li class="row" data-kind="whatsapp"><p class="row__now">אותן שאלות על מחיר, שעות והרשמה מגיעות כל יום, ומישהו עוצר את העבודה כדי לענות.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">התשובות הקבועות יוצאות לבד. רק מה שבאמת דורש אתכם מגיע אליכם.</p><span class="chip">בוט WhatsApp</span></li>
+          <li class="row" data-kind="automation"><p class="row__now">חמש הודעות הלוך ושוב כדי לקבוע פגישה אחת.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">הלקוח בוחר זמן פנוי בעצמו, ומקבל אישור ותזכורת.</p><span class="chip">אוטומציה</span></li>
+          <li class="row" data-kind="automation"><p class="row__now">אותה הודעת עדכון נשלחת לכל לקוח ביד: מעתיקים, מתקנים שם, שולחים.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">ההודעה יוצאת לבד ברגע הנכון, עם הפרטים של כל לקוח.</p><span class="chip">אוטומציה</span></li>
+        </ul>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-ops" aria-labelledby="tab-ops" hidden>
+        <div class="panel__head" aria-hidden="true"><span>מה קורה היום</span><span></span><span>איך זה יכול לעבוד</span><span></span></div>
+        <ul class="rows">
+          <li class="row" data-kind="automation"><p class="row__now">לקוח חדש נרשם, ומישהו מקליד את אותם פרטים באקסל, ב-CRM ובמערכת החשבוניות.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">מזינים פעם אחת, וכל שאר המערכות מתעדכנות.</p><span class="chip">אוטומציה</span></li>
+          <li class="row" data-kind="automation"><p class="row__now">אחרי שסוגרים לקוח: חוזה, חשבונית, תיקייה, עדכון לצוות. כל פעם מחדש, ותמיד משהו נשכח.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">סגירת העסקה מפעילה את כל הרצף, ואתם מקבלים עדכון שהכול יצא.</p><span class="chip">אוטומציה</span></li>
+          <li class="row" data-kind="automation"><p class="row__now">בסוף החודש עוברים שורה-שורה כדי לבדוק מי שילם, ושולחים תזכורות אחת-אחת.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">סטטוס התשלום מתעדכן, ותזכורת יוצאת רק למי שעוד לא שילם.</p><span class="chip">אוטומציה</span></li>
+        </ul>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-docs" aria-labelledby="tab-docs" hidden>
+        <div class="panel__head" aria-hidden="true"><span>מה קורה היום</span><span></span><span>איך זה יכול לעבוד</span><span></span></div>
+        <ul class="rows">
+          <li class="row" data-kind="custom"><p class="row__now">המידע מפוזר בין וואטסאפ, מייל, דרייב ועשרה קבצי אקסל, ואף אחד לא בטוח מה מעודכן.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">מערכת אחת שמרכזת את המידע, בנויה סביב הדרך שבה אתם עובדים.</p><span class="chip">מערכת בהתאמה אישית</span></li>
+          <li class="row" data-kind="automation"><p class="row__now">הצעת מחיר, סיכום פגישה, הסכם: כל פעם כותבים כמעט את אותו מסמך.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">המסמך נוצר מהפרטים שכבר קיימים, ונשאר רק לעבור ולאשר.</p><span class="chip">אוטומציה</span></li>
+          <li class="row" data-kind="automation"><p class="row__now">מישהו עובר כל שבוע על אותם אתרים, מעתיק לטבלה ומסנן ביד.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">המידע נאסף לפי הכללים שלכם ומגיע מסודר ומסונן.</p><span class="chip">אוטומציה</span></li>
+        </ul>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-team" aria-labelledby="tab-team" hidden>
+        <div class="panel__head" aria-hidden="true"><span>מה קורה היום</span><span></span><span>איך זה יכול לעבוד</span><span></span></div>
+        <ul class="rows">
+          <li class="row" data-kind="training"><p class="row__now">ברור לכם ש-AI יכול לעזור, אבל לא ברור במה. ניסיתם כמה דברים וחזרתם לעבוד כמו קודם.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">הדרכה סביב משימה אמיתית מהעבודה שלכם, ויציאה עם תוצר שעובד.</p><span class="chip">הדרכת AI</span></li>
+          <li class="row" data-kind="training"><p class="row__now">שעות של קריאה בחוזים, דוחות או קורות חיים כדי למצוא את מה שחשוב.</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">עבודה עם כלי AI שמסכמים ומסמנים מה דורש תשומת לב, על החומרים שלכם.</p><span class="chip">הדרכת AI</span></li>
+          <li class="row" data-kind="map"><p class="row__now">עובד יושב חצי יום כל שבוע על משימה שכולם כבר בטוחים ש"ככה זה".</p><svg class="row__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><p class="row__then">ממפים אותה יחד ומחליטים: אוטומציה, AI, או שינוי פשוט בתהליך.</p><span class="chip">מתחילים במיפוי</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="areas__more">התחום שלכם לא ברשימה? <a href="#contact">ספרו לי מה קורה אצלכם</a>, ונבדוק יחד.</p>
 </section>
 
 <!-- 3. What I build -->
@@ -284,6 +355,20 @@
   </div>
 </section>
 
+<!-- 6b. FAQ -->
+<section class="faq" id="faq" aria-labelledby="faqTitle">
+  <div class="faq__in">
+    <h2 id="faqTitle">שאלות נפוצות</h2>
+    <div class="faq__list">
+      <details><summary>אני לא יודע מה אני צריך. זה בסדר?</summary><p>זה המצב הנפוץ ביותר. אתם מתארים מה קורה בעסק ומה גוזל זמן, ואני מציעה את הפתרון. אין צורך לדעת מראש אם זו אוטומציה, בוט או מערכת.</p></details>
+      <details><summary>כמה זה עולה?</summary><p>אין מחיר אחיד. המחיר תלוי במורכבות התהליך, במספר המערכות שצריך לחבר, ובשאלה אם נדרש רכיב AI או פיתוח מותאם. אחרי שיחת ההיכרות והאפיון תקבלו הצעה מסודרת.</p></details>
+      <details><summary>כמה זמן לוקח להקים פתרון?</summary><p>אוטומציה ממוקדת אחת יכולה לעלות לאוויר מהר הרבה יותר ממערכת שמחברת כמה פלטפורמות. לוח הזמנים המדויק נקבע אחרי שלב האפיון.</p></details>
+      <details><summary>צריך ידע טכני כדי לעבוד איתך?</summary><p>לא. מספיק לתאר את העבודה כמו שאתם מתארים אותה לעובד חדש. את החלק הטכני אני לוקחת.</p></details>
+      <details><summary>מתי לא כדאי לעשות אוטומציה?</summary><p>כשתהליך קורה לעיתים רחוקות, כשהוא עדיין לא מוגדר או משתנה כל הזמן, או כששינוי פשוט בתהליך יפתור את הבעיה. במקרים כאלה אגיד לכם את זה.</p></details>
+    </div>
+  </div>
+</section>
+
 <!-- 7. Contact -->
 <section class="contact" id="contact" aria-labelledby="contactTitle">
   <div class="contact__intro">
@@ -293,6 +378,17 @@
   </div>
 
   <form class="form" id="contactForm" novalidate>
+    <fieldset class="field field--wide area-pick">
+        <legend>באיזה תחום זה? <span class="optional">(לא חובה)</span></legend>
+        <div class="area-pick__opts">
+          <label><input type="radio" name="area" value="מכירות ולידים"><span>מכירות ולידים</span></label>
+          <label><input type="radio" name="area" value="שירות לקוחות"><span>שירות לקוחות</span></label>
+          <label><input type="radio" name="area" value="תפעול ושגרה"><span>תפעול ושגרה</span></label>
+          <label><input type="radio" name="area" value="מידע ומסמכים"><span>מידע ומסמכים</span></label>
+          <label><input type="radio" name="area" value="הצוות ו-AI"><span>הצוות ו-AI</span></label>
+          <label><input type="radio" name="area" value="לא בטוח"><span>לא בטוח</span></label>
+        </div>
+      </fieldset>
     <div class="field field--wide">
       <label for="message">מה קורה אצלכם היום?</label>
       <textarea id="message" name="message" rows="5" required placeholder="למשל: כל ליד שמגיע בוואטסאפ אנחנו מעתיקים ביד לאקסל…"></textarea>
@@ -314,7 +410,7 @@
       <label for="privacyConsent">קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></label>
     </div>
     <div class="form__end field--wide">
-      <button class="button" type="submit">שלחו לרעות</button>
+      <button class="button" type="submit">שליחה לרעות</button>
       <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
     </div>
   </form>
@@ -324,7 +420,7 @@
 
 <footer class="foot">
   <p>© <span id="year"></span> <span translate="no">Reut AI</span></p>
-  <p><a href="accessibility-statement.html">הצהרת נגישות</a> <a href="privacy.html">מדיניות פרטיות</a></p>
+  <p><a href="https://reutaisolutions.com/accessibility-statement.html">הצהרת נגישות</a> <a href="privacy.html">מדיניות פרטיות</a></p>
 </footer>
 
 <button type="button" class="a11y" id="a11yToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="a11yPanel" aria-label="הגדרות נגישות">
@@ -336,7 +432,6 @@
   <div class="a11y-row"><span>עצירת אנימציות</span><button type="button" id="a11yMotion" aria-pressed="false">הפעלה</button></div>
   <button type="button" class="a11y-reset" id="a11yReset">איפוס</button>
 </div>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -413,6 +508,54 @@
       "isPartOf": { "@id": "https://reutaisolutions.com/#website" },
       "about": { "@id": "https://reutaisolutions.com/#organization" },
       "primaryImageOfPage": "https://reutaisolutions.com/assets/hero-team.jpg"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "אני לא יודע מה אני צריך. זה בסדר?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "זה המצב הנפוץ ביותר. אתם מתארים מה קורה בעסק ומה גוזל זמן, ואני מציעה את הפתרון. אין צורך לדעת מראש אם זו אוטומציה, בוט או מערכת."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "כמה זה עולה?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "אין מחיר אחיד. המחיר תלוי במורכבות התהליך, במספר המערכות שצריך לחבר, ובשאלה אם נדרש רכיב AI או פיתוח מותאם. אחרי שיחת ההיכרות והאפיון תקבלו הצעה מסודרת."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "כמה זמן לוקח להקים פתרון?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "אוטומציה ממוקדת אחת יכולה לעלות לאוויר מהר הרבה יותר ממערכת שמחברת כמה פלטפורמות. לוח הזמנים המדויק נקבע אחרי שלב האפיון."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "צריך ידע טכני כדי לעבוד איתך?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "לא. מספיק לתאר את העבודה כמו שאתם מתארים אותה לעובד חדש. את החלק הטכני אני לוקחת."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "מתי לא כדאי לעשות אוטומציה?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "כשתהליך קורה לעיתים רחוקות, כשהוא עדיין לא מוגדר או משתנה כל הזמן, או כששינוי פשוט בתהליך יפתור את הבעיה. במקרים כאלה אגיד לכם את זה."
+      }
     }
   ]
 }
