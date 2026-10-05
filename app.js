@@ -59,6 +59,8 @@
         s.classList.toggle('is-instead', i < idx || (i === idx && local > 0.38));
       });
       countEl.textContent = idx + 1;
+      day.style.setProperty('--dp', ((idx + Math.min(local / 0.38, 1)) / n).toFixed(4));
+      day.setAttribute('data-kind', sits[idx].getAttribute('data-kind'));
     });
   }
 
@@ -76,10 +78,84 @@
     if (osReduce.addEventListener) osReduce.addEventListener('change', setMode);
   }
 
+  /* ------------------------------------------------------------------
+     Scroll motion (styles: the "motion" block in styles.css). Adds
+     html.js-motion only when motion is allowed; one rAF-throttled scroll
+     handler writes 0..1 progress values as custom properties on the
+     element that uses them, and adds .is-in to each entrance once its
+     top passes into the lower part of the screen (or anything above it,
+     so a jump to #contact never leaves skipped content hidden). Reduced motion (OS or the a11y widget) drops the class,
+     and the CSS falls back to the still, complete page.
+     ------------------------------------------------------------------ */
+  function initMotion() {
+    var backdrop = $('.backdrop'), hero = $('.hero'), steps = $('.start__steps'), about = $('.about');
+    var stepItems = steps ? $all('li', steps) : [];
+    var frame = 0, pending = [];
+
+    function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+    function update() {
+      frame = 0;
+      if (!root.classList.contains('js-motion')) return;
+      var vh = window.innerHeight;
+      var max = document.documentElement.scrollHeight - vh;
+      if (pending.length) {
+        pending = pending.filter(function (el) {
+          if (el.getBoundingClientRect().top < vh * 0.88) { el.classList.add('is-in'); return false; }
+          return true;
+        });
+      }
+      if (backdrop) backdrop.style.setProperty('--sp', clamp(window.scrollY / (max || 1)).toFixed(4));
+      if (hero) {
+        var hr = hero.getBoundingClientRect();
+        if (hr.bottom > 0) hero.style.setProperty('--hp', clamp(-hr.top / (hr.height || 1)).toFixed(4));
+      }
+      if (steps) {
+        var sr = steps.getBoundingClientRect();
+        if (sr.top < vh && sr.bottom > 0) {
+          // the thread starts drawing as the steps enter the lower third
+          // of the screen and reaches the last number by mid-screen
+          var sp = clamp((vh * 0.85 - sr.top) / (vh * 0.4));
+          steps.style.setProperty('--stp', sp.toFixed(4));
+          stepItems.forEach(function (li, i) {
+            var at = stepItems.length > 1 ? i / (stepItems.length - 1) : 0;
+            if (sp >= at * 0.98) li.classList.add('is-in');
+          });
+        }
+      }
+      if (about) {
+        var ar = about.getBoundingClientRect();
+        if (ar.top < vh && ar.bottom > 0) about.style.setProperty('--ap', clamp((vh - ar.top) / (vh + ar.height)).toFixed(4));
+      }
+    }
+    function onScroll() { if (!frame) frame = requestAnimationFrame(update); }
+
+    function enable() {
+      var on = !reduced();
+      root.classList.toggle('js-motion', on);
+      if (on && !pending.length) {
+        $all('.build__list li').forEach(function (li, i) { li.style.setProperty('--i', i); });
+        var sel = '.build__list li, .build__note, .proof__list li, .day .sit, .form';
+        // on phones the steps stack: reveal each one as it scrolls in
+        if (window.innerWidth < 900) sel += ', .start__steps li';
+        pending = $all(sel).filter(function (el) { return !el.classList.contains('is-in'); });
+      }
+      update();
+    }
+
+    enable();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    if (osReduce.addEventListener) osReduce.addEventListener('change', enable);
+    // the a11y widget toggles html.a11y-reduce-motion; follow it
+    new MutationObserver(function () {
+      if (root.classList.contains('js-motion') === reduced()) enable();
+    }).observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+
   /* -------------------------------------------------------- contact form */
   /* Conversion events to window.dataLayer (GTM-compatible), forwarded to
      GA4 when gtag() is present. Same event names as the live site. */
-  function track(name, params) {
+  function trackEvent(name, params) {
     try {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: name }, params || {}));
@@ -95,7 +171,7 @@
     var WEBHOOK = 'https://hook.eu1.make.com/nfhgrgadq0tvmrhe8j6e6uomyrbm5jly';
     var started = false;
     form.addEventListener('focusin', function () {
-      if (!started) { started = true; track('lead_form_start', { form_id: 'contactForm' }); }
+      if (!started) { started = true; trackEvent('lead_form_start', { form_id: 'contactForm' }); }
     });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -122,13 +198,13 @@
       }).then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         status.textContent = 'תודה! ההודעה נשלחה, אחזור אליכם בהקדם.';
-        track('lead_form_submit', { form_id: 'contactForm', has_business: !!payload.business });
+        trackEvent('lead_form_submit', { form_id: 'contactForm', has_business: !!payload.business });
         form.reset();
         started = false;
       }).catch(function () {
         status.classList.add('is-error');
         status.textContent = 'משהו השתבש בשליחה. נסו שוב או כתבו לי בוואטסאפ.';
-        track('lead_form_error', { form_id: 'contactForm' });
+        trackEvent('lead_form_error', { form_id: 'contactForm' });
       }).finally(function () {
         btn.disabled = false;
       });
@@ -137,7 +213,7 @@
   function initWhatsApp() {
     $all('[data-wa]').forEach(function (a) {
       a.addEventListener('click', function () {
-        track('whatsapp_click', { link_location: a.getAttribute('data-wa-loc') || 'inline_link' });
+        trackEvent('whatsapp_click', { link_location: a.getAttribute('data-wa-loc') || 'inline_link' });
       });
     });
   }
@@ -178,7 +254,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     // Each part starts on its own, so a failure in one never stops the form.
-    [initForm, initWhatsApp, initA11y, initDay, function () {
+    [initForm, initWhatsApp, initA11y, initDay, initMotion, function () {
       $('#year').textContent = new Date().getFullYear();
     }].forEach(function (init) {
       try { init(); } catch (err) { if (window.console) console.error(err); }
